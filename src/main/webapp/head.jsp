@@ -17,7 +17,7 @@
                 </td>
                 <td style="font-weight: bold; color: #fff; padding-top: 20px" 
                     align="right">
-                    当前用户：admin &nbsp;&nbsp; 
+                    当前用户：${u1.loginName}
 					
 					
                     </td></tr></table>

@@ -15,7 +15,7 @@ public class DBUtils {
     //1.定义变量
     private Connection connection;
     private PreparedStatement pps;
-    private ResultSet resultSet;
+    protected ResultSet resultSet;
     private int count;//存储收影响的行数
 
     private static String userName;

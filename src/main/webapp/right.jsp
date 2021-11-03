@@ -26,7 +26,7 @@
                          <td>当前时间：2018-12-27 17:03:55</td>
 						</tr>
                         <tr>
-                            <td style="font-weight: bold; font-size: 16px">admin</td>
+                            <td style="font-weight: bold; font-size: 16px">${u1.loginName}</td>
 						</tr>
                         <tr>
                             <td>欢迎进入网站管理中心！</td></tr></table></td>
