@@ -24,4 +24,17 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudents(String stuname, String stuno, int sex, int pageIndex, int pageSize) {
         return dao.getStudents(stuname, stuno, sex, pageIndex, pageSize);
     }
+
+    /**
+     * 获得总条数（基于模糊查询）
+     *
+     * @param stuname 学生名字
+     * @param stuno   学生编号
+     * @param sex     性别
+     * @return 模糊查询的总条数
+     */
+    @Override
+    public int total(String stuname, String stuno, int sex) {
+        return dao.total(stuname, stuno, sex);
+    }
 }

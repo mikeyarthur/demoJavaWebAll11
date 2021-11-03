@@ -133,9 +133,9 @@
 						<td colspan="20" style="text-align: center;">
 								<a style="text-decoration: none;" href="/Educational/student/getStudentList"> 首页   </a>
 								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}"> 上一页 </a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1}"> 下一页 </a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList"> 尾页   </a>
-								共1234条 每页显示 10/23
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}"> 下一页 </a>
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}"> 尾页   </a>
+								共${total}条 每页显示 ${pageSize}/${total}
 						</td>
                     </tr>
                 </tbody>
