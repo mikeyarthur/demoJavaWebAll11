@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
 	学生信息管理平台
@@ -25,7 +26,7 @@
         </div>
 </div>
 <div class="cztable">
-    <form action="../../right.jsp" method="post">
+    <form action="list.jsp" method="post">
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
@@ -40,26 +41,7 @@
 						<input type="text"  name="f_goods_image" value="杨XX" />
 					</td>
                 </tr>
-                 <tr>
-                    <td>学院<span style="color:red">*</span>：</td>
-                    <td>
-                        <select>
-                        	<option>矿冶工程学院</option>
-                            <option>冶金工程学院</option>
-                            <option>资源工程学院</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>专业<span style="color:red">*</span>：</td>
-                    <td>
-                        <select>
-                        	<option>石油工程</option>
-                            <option>煤炭工程</option>
-                            <option>矿加工程</option>
-                        </select>
-                    </td>
-                </tr>
+              
                 <tr>
                     <td>班级<span style="color:red">*</span>：</td>
                     <td>

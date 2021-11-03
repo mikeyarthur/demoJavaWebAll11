@@ -1,3 +1,5 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -31,7 +33,7 @@
 		<span>
                 <span style="float: left;">当前位置是：教务中心-》学生管理</span>
                 <span style="float: right; margin-right: 8px; font-weight: bold;">
-                    <a style="text-decoration: none;" href="add.html">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
+                    <a style="text-decoration: none;" href="add.jsp">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
                 </span>
             </span>
 	</div>
@@ -67,45 +69,60 @@
 						<th>操作</th>
                     </tr>
 
-                    <tr id="product1">
-                        <td align="center">201308J001</td>
-						<td align="center">张三</td>
-						<td align="center">男</td>
-                        <td align="center">130000000</td>
-						<td align="center">JAVA</td>
-                        <td align="center">2015-10-7</td> 
-						<td align="center">
-							<a href="edit.html">修改</a>						   
-							<a href="#">删除</a>
-						</td> 				                    
-                    </tr> 
+<%--                    <tr id="product1">--%>
+<%--                        <td align="center">201308J001</td>--%>
+<%--						<td align="center">张三</td>--%>
+<%--						<td align="center">男</td>--%>
+<%--                        <td align="center">130000000</td>--%>
+<%--						<td align="center">JAVA</td>--%>
+<%--                        <td align="center">2015-10-7</td> --%>
+<%--						<td align="center">--%>
+<%--							<a href="edit.jsp">修改</a>						   --%>
+<%--							<a href="#">删除</a>--%>
+<%--						</td> 				                    --%>
+<%--                    </tr> --%>
 
-					 <tr id="product1">
-                        <td align="center">20108E00</td>
-						<td align="center">李四</td>
-						<td align="center">男</td>
-                        <td align="center">13011111111</td>
-						<td align="center">英语</td>
-                        <td align="center">2015-09-10</td> 
-						<td align="center">
-							<a href="edit.html">修改</a>						   
-							<a href="#">删除</a>
-						</td> 				                    
-                    </tr> 
-					
-					<tr id="product1">
-                        <td align="center">201308J001</td>
-						<td align="center">王二麻子</td>
-						<td align="center">男</td>
-                        <td align="center">13666666666</td>
-						<td align="center">JAVA</td>
-                        <td align="center">2015-10-7</td> 
-						<td align="center">
-							<a href="edit.html">修改</a>						   
-							<a href="#">删除</a>
-						</td> 				                    
-                    </tr> 
-					
+<%--					 <tr id="product1">--%>
+<%--                        <td align="center">20108E00</td>--%>
+<%--						<td align="center">李四</td>--%>
+<%--						<td align="center">男</td>--%>
+<%--                        <td align="center">13011111111</td>--%>
+<%--						<td align="center">英语</td>--%>
+<%--                        <td align="center">2015-09-10</td> --%>
+<%--						<td align="center">--%>
+<%--							<a href="edit.jsp">修改</a>						   --%>
+<%--							<a href="#">删除</a>--%>
+<%--						</td> 				                    --%>
+<%--                    </tr> --%>
+<%--					--%>
+<%--					<tr id="product1">--%>
+<%--                        <td align="center">201308J001</td>--%>
+<%--						<td align="center">王二麻子</td>--%>
+<%--						<td align="center">男</td>--%>
+<%--                        <td align="center">13666666666</td>--%>
+<%--						<td align="center">JAVA</td>--%>
+<%--                        <td align="center">2015-10-7</td> --%>
+<%--						<td align="center">--%>
+<%--							<a href="edit.jsp">修改</a>						   --%>
+<%--							<a href="#">删除</a>--%>
+<%--						</td> 				                    --%>
+<%--                    </tr> --%>
+
+
+					<c:forEach items="${stulist}" var="stu">
+						<tr id="product1">
+							<td align="center">${stu.stuNo}</td>
+							<td align="center">${stu.stuName}</td>
+							<td align="center">${stu.sex == 1 ? "男" : "女"}</td>
+							<td align="center">${stu.phone}</td>
+							<td align="center">${stu.profession}</td>
+							<td align="center">${stu.regDate}</td>
+							<td align="center">
+								<a href="edit.jsp">修改</a>
+								<a href="#">删除</a>
+							</td>
+						</tr>
+					</c:forEach>
 				
 					
                     <tr>

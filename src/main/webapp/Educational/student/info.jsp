@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
 	学生信息管理平台
@@ -19,13 +20,13 @@
 
 		<div class="div_head">
             <span>
-                <span style="float:left">当前位置是：教务中心-》学生管理-》更新</span>
+                <span style="float:left">当前位置是：教务中心-》学生管理-》新增</span>
                 <span style="float:right;margin-right: 8px;font-weight: bold"></span>
             </span>
         </div>
 </div>
 <div class="cztable">
-    <form action="list.html" method="post">
+    <form action="../../right.jsp" method="post">
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
@@ -40,7 +41,26 @@
 						<input type="text"  name="f_goods_image" value="杨XX" />
 					</td>
                 </tr>
-                 
+                 <tr>
+                    <td>学院<span style="color:red">*</span>：</td>
+                    <td>
+                        <select>
+                        	<option>矿冶工程学院</option>
+                            <option>冶金工程学院</option>
+                            <option>资源工程学院</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>专业<span style="color:red">*</span>：</td>
+                    <td>
+                        <select>
+                        	<option>石油工程</option>
+                            <option>煤炭工程</option>
+                            <option>矿加工程</option>
+                        </select>
+                    </td>
+                </tr>
                 <tr>
                     <td>班级<span style="color:red">*</span>：</td>
                     <td>
@@ -115,7 +135,7 @@
                 </tr>
 				<tr>
 					<td colspan=2 align="center">
-						<input type="submit" value="保存"> 
+						<input type="submit" value="添加" /> 
 					</td> 
 				</tr>
 			</table>

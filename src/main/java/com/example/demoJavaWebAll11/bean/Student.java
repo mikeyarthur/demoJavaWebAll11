@@ -6,7 +6,7 @@ public class Student {
     private Integer stuId;
     private String stuName;
     private String stuNo;
-    private String sex;
+    private Integer sex;
     private String phone;
     private String email;
     private String registered;
@@ -45,11 +45,11 @@ public class Student {
         this.stuNo = stuNo;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
