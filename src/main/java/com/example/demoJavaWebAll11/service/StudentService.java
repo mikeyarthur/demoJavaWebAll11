@@ -7,6 +7,12 @@ import java.util.List;
 public interface StudentService {
     /**
      * 获取学员的信息列表
+     *
+     * @param stuname 学生名字
+     * @param stuno   学生编号
+     * @param sex     性别
+     * @param pageIndex 页码值
+     * @param pageSize  每页显示条数
      */
-    public List<Student> getStudents(String stuname, String stuno, int sex);
+    public List<Student> getStudents(String stuname, String stuno, int sex, int pageIndex, int pageSize);
 }

@@ -13,13 +13,14 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
      * 获取学员的信息列表
      */
     @Override
-    public List<Student> getStudents(String stuname, String stuno, int sex) {
+    public List<Student> getStudents(String stuname, String stuno, int sex, int pageIndex, int pageSize) {
         // 为什么这里list不用null，而是直接new 对象？方便后面数据处理，不用判断null，而是直接取数据吗？
         List list = new ArrayList<Student>();
         List params = new ArrayList();
         try {
 //            String sql = "select * from student";
 //            resultSet = query(sql, null);
+            // 1. 模糊查找
             StringBuffer sql = new StringBuffer(" select * from student where 1=1 ");
             if (stuname != null && stuname.length() > 0) {
                 sql.append(" and stuname like ? ");
@@ -33,6 +34,17 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
                 sql.append(" and sex=? ");
                 params.add(sex);
             }
+
+            // 2. 分页
+            sql.append(" limit ?,? ");
+            // 目标：第1条到第5条   ==》limit 0, 5
+            //      第6条到第10条  ==》limit 5，5
+            //      第11条到第15条 ==》limit 10，5
+            //                      limit        0,                       5
+            //                      limit (pageIndex - 1) * pageSize, pageSize
+            params.add((pageIndex - 1) * pageSize);
+            params.add(pageSize);
+
             resultSet = query(sql.toString(), params);
 
             if (resultSet == null) {
