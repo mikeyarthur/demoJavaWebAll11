@@ -40,18 +40,18 @@
 
 	<div class="cztable">
 		<div>
-				  <form action="#" method="get">
+				  <form action="/Educational/student/getStudentList" method="get">
                     学生名称: 
-					<input type="text"  />
+					<input type="text" name="stuname" value="${stuname}"/>
                      学生学号: 
-					<input type="text"  />
+					<input type="text" name="stuno" value="${stuno}" />
 					性别: 
-					<select>
-							<option>--请选择--</option>
-							<option>男</option>
-							<option>女</option>
+					<select name="sex">
+							<option value="-1">--请选择--</option>
+							<option value="1" ${sex == 1 ? "selected" : ""}>男</option>
+							<option value="0" ${sex == 0 ? "selected" : ""}>女</option>
 						</select>
-					<input type="button" value="查询" />
+					<input type="submit" value="查询" />
 
                 </form>
 
@@ -110,7 +110,7 @@
 
 
 					<c:forEach items="${stulist}" var="stu">
-						<tr id="product1">
+						<tr id="${stu.stuNo}">
 							<td align="center">${stu.stuNo}</td>
 							<td align="center">${stu.stuName}</td>
 							<td align="center">${stu.sex == 1 ? "男" : "女"}</td>

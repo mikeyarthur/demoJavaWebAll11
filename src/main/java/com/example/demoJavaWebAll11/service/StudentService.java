@@ -8,5 +8,5 @@ public interface StudentService {
     /**
      * 获取学员的信息列表
      */
-    public List<Student> getStudents();
+    public List<Student> getStudents(String stuname, String stuno, int sex);
 }

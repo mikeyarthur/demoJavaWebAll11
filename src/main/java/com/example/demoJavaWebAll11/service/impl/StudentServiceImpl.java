@@ -15,7 +15,7 @@ public class StudentServiceImpl implements StudentService {
      * 获取学员的信息列表
      */
     @Override
-    public List<Student> getStudents() {
-        return dao.getStudents();
+    public List<Student> getStudents(String stuname, String stuno, int sex) {
+        return dao.getStudents(stuname, stuno, sex);
     }
 }
