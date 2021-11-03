@@ -131,10 +131,18 @@
 <%--                            首页 上一页  ... 7 8 9 10 11 12 ... 下一页 尾页 共1234条 每页显示 10/23 </a>--%>
 <%--                        </td>--%>
 						<td colspan="20" style="text-align: center;">
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList"> 首页   </a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}"> 上一页 </a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}"> 下一页 </a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}"> 尾页   </a>
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+									首页
+								</a>
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+									上一页
+								</a>
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+									下一页
+								</a>
+								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+									尾页
+								</a>
 								共${total}条 每页显示 ${pageSize}/${total}
 						</td>
                     </tr>
