@@ -33,4 +33,11 @@ public interface StudentService {
      * @return          数据库影响条数
      */
     public int insertStu(Student student);
+
+    /**
+     *
+     * @param sid  学生id
+     * @return    主键查询的学生对象
+     */
+    public Student findById(int sid);
 }

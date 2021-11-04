@@ -1,4 +1,5 @@
 ﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
@@ -31,14 +32,14 @@
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="" />
+						<input type="text"  name="f_goods_image" value="${stu.stuNo}" />
 					</td>
                 </tr>
 
                 <tr  width="120px;">
                     <td>姓名<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="杨XX" />
+						<input type="text"  name="f_goods_image" value="${stu.stuName}" />
 					</td>
                 </tr>
                  
@@ -46,16 +47,22 @@
                     <td>班级<span style="color:red">*</span>：</td>
                     <td>
                         <select>
-                        	<option>一班</option>
-                            <option>二班</option>
-                            <option>三班</option>
+<%--                        	<option>一班</option>--%>
+<%--                            <option>二班</option>--%>
+<%--                            <option>三班</option>--%>
+                            <c:forEach items="${glist}" var="g">
+                                <option value="${g.gradeId}" ${g.gradeId == stu.gid ? "selected" : ""}>${g.gradeName}</option>
+<%--                                <option value="${g.gradeId}" ${g.gradeId == stu.gid ? 'selected' : ''}>${g.gradeName}</option>--%>
+                            </c:forEach>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>性别<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="gender" checked value="1" />男 <input type="radio" name="gender" value="0"/>女
+<%--                        <input type="radio" name="gender" checked value="1" />男 <input type="radio" name="gender" value="0"/>女--%>
+                        <input type="radio" name="gender" ${stu.sex == 1 ? 'checked' : ''} value="1" />男
+                        <input type="radio" name="gender" ${stu.sex == 0 ? 'checked' : ''} value="0"/>女
                     </td>
                 </tr>
 
@@ -63,47 +70,47 @@
 				<tr>
                     <td>EMAIL：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="1332@126.com" />
+                        <input type="text" name="f_goods_image" value="${stu.email}" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>联系电话：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="13333333333" />
+                        <input type="text" name="f_goods_image" value="${stu.phone}" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>户口所在地：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="北京"  />
+                        <input type="text" name="f_goods_image" value="${stu.registered}"  />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>住址：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="朝阳" />
+                        <input type="text" name="f_goods_image" value="${stu.address}" />
                     </td>                
                 </tr>
 				<tr>
                     <td>政治面貌：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="党员" />
+                        <input type="text" name="f_goods_image" value="${stu.politics}" />
                     </td>                
                 </tr>
 				<tr>
                     <td>身份证号：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="110111111111111111111" />
+                        <input type="text" name="f_goods_image" value="${stu.idNumber}" />
                     </td>                
                 </tr>
 				
 				<tr>
                     <td>专业：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="java" />
+                        <input type="text" name="f_goods_image" value="${stu.profession}" />
                     </td>                
                 </tr>
 					
@@ -111,7 +118,7 @@
 				<tr>
                     <td>简介<span style="color:red">*</span>：</td>
                     <td>
-                        <textarea>一个新开辟领域的探讨，探讨摸索</textarea>
+                        <textarea>${stu.introduction}</textarea>
                     </td>
                 </tr>
 				<tr>

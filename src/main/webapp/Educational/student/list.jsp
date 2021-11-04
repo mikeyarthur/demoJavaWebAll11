@@ -118,7 +118,7 @@
 							<td align="center">${stu.profession}</td>
 							<td align="center">${stu.regDate}</td>
 							<td align="center">
-								<a href="edit.jsp">修改</a>
+								<a href="/Educational/student/findbyid?sid=${stu.stuId}">修改</a>
 								<a href="#">删除</a>
 							</td>
 						</tr>

@@ -48,4 +48,13 @@ public class StudentServiceImpl implements StudentService {
     public int insertStu(Student student) {
         return dao.insertStu(student);
     }
+
+    /**
+     * @param sid 学生id
+     * @return 主键查询的学生对象
+     */
+    @Override
+    public Student findById(int sid) {
+        return dao.findById(sid);
+    }
 }

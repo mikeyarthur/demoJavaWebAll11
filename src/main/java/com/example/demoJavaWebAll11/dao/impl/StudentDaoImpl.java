@@ -201,4 +201,44 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
 
         return result;
     }
+
+    /**
+     * @param sid 学生id
+     * @return 主键查询的学生对象
+     */
+    @Override
+    public Student findById(int sid) {
+        Student student = null;
+        try {
+            String sql = "select * from student where stuid=? ";
+            List params = new ArrayList();
+            params.add(sid);
+
+            resultSet = query(sql, params);
+            while (resultSet.next()) {
+                student = new Student();
+                student.setStuId(resultSet.getInt("stuId"));
+                student.setStuName(resultSet.getString("stuName"));
+                student.setStuNo(resultSet.getString("stuNo"));
+                student.setSex(resultSet.getInt("sex"));
+                student.setPhone(resultSet.getString("phone"));
+                student.setEmail(resultSet.getString("email"));
+                student.setRegistered(resultSet.getString("registered"));
+                student.setAddress(resultSet.getString("address"));
+                student.setProfession(resultSet.getString("profession"));
+                student.setIdNumber(resultSet.getString("idNumber"));
+                student.setPolitics(resultSet.getString("politics"));
+                student.setRegDate(resultSet.getDate("regDate"));
+                student.setState(resultSet.getInt("state"));
+                student.setIntroduction(resultSet.getString("introduction"));
+                student.setGid(resultSet.getInt("gid"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return student;
+    }
 }
