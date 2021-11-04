@@ -47,4 +47,11 @@ public interface StudentService {
      * @return          影响数据库的条数
      */
     public int updateStu(Student student);
+
+    /**
+     *
+     * @param sid  学生id
+     * @return     数据库影响的条数
+     */
+    public int deleteById(int sid);
 }

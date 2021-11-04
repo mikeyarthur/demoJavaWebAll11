@@ -119,7 +119,7 @@
 							<td align="center">${stu.regDate}</td>
 							<td align="center">
 								<a href="/Educational/student/findbyid?sid=${stu.stuId}">修改</a>
-								<a href="#">删除</a>
+								<a href="/Educational/student/deletebyid?sid=${stu.stuId}">删除</a>
 							</td>
 						</tr>
 					</c:forEach>

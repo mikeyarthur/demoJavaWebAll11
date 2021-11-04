@@ -66,4 +66,13 @@ public class StudentServiceImpl implements StudentService {
     public int updateStu(Student student) {
         return dao.updateStu(student);
     }
+
+    /**
+     * @param sid 学生id
+     * @return 数据库影响的条数
+     */
+    @Override
+    public int deleteById(int sid) {
+        return dao.deleteById(sid);
+    }
 }

@@ -28,7 +28,7 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
 //            String sql = "select * from student";
 //            resultSet = query(sql, null);
             // 1. 模糊查找
-            StringBuffer sql = new StringBuffer(" select * from student where 1=1 ");
+            StringBuffer sql = new StringBuffer(" select * from student where 1=1 and state!=4 ");
             if (stuname != null && stuname.length() > 0) {
                 sql.append(" and stuname like ? ");
                 params.add("%" + stuname + "%");
@@ -99,7 +99,7 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
         List params = new ArrayList();
         try {
             // 1. 模糊查找
-            StringBuffer sql = new StringBuffer(" select count(*) from student where 1=1 ");
+            StringBuffer sql = new StringBuffer(" select count(*) from student where 1=1 and state!=4 ");
             if (stuname != null && stuname.length() > 0) {
                 sql.append(" and stuname like ? ");
                 params.add("%" + stuname + "%");
@@ -188,7 +188,7 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
 //        params.add(student.getRegDate());
             params.add(new Date());
 //        params.add(student.getState());
-            params.add(1);  // 1 表示在读
+            params.add(1);  // 1 表示在读, 2 休学， 3 退学， 4 删除
             params.add(student.getIntroduction());
             params.add(student.getGid());
 
@@ -272,6 +272,29 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
             params.add(student.getGid());
             params.add(student.getStuId());
 
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return update;
+    }
+
+    /**
+     * @param sid 学生id
+     * @return 数据库影响的条数
+     */
+    @Override
+    public int deleteById(int sid) {
+        // 1. 假删除
+        int update = 0;
+        try {
+            String sql = "update student set state=? where stuid=?";
+            List params = new ArrayList();
+            params.add(4);
+            params.add(sid);
             update = update(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
