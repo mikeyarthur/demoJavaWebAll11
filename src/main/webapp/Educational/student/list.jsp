@@ -33,7 +33,7 @@
 		<span>
                 <span style="float: left;">当前位置是：教务中心-》学生管理</span>
                 <span style="float: right; margin-right: 8px; font-weight: bold;">
-                    <a style="text-decoration: none;" href="add.jsp">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
+                    <a style="text-decoration: none;" href="/Educational/student/getGradeList">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
                 </span>
             </span>
 	</div>
