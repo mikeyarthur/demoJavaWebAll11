@@ -3,6 +3,7 @@ package com.example.demoJavaWebAll11.dao.impl;
 import com.example.demoJavaWebAll11.bean.Student;
 import com.example.demoJavaWebAll11.dao.DBUtils;
 import com.example.demoJavaWebAll11.dao.StudentDao;
+import com.example.demoJavaWebAll11.util.StudentEnum;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -188,7 +189,7 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
 //        params.add(student.getRegDate());
             params.add(new Date());
 //        params.add(student.getState());
-            params.add(1);  // 1 表示在读, 2 休学， 3 退学， 4 删除
+            params.add(StudentEnum.READING.type);  // 1 表示在读, 2 休学， 3 退学， 4 删除
             params.add(student.getIntroduction());
             params.add(student.getGid());
 
@@ -293,7 +294,7 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
         try {
             String sql = "update student set state=? where stuid=?";
             List params = new ArrayList();
-            params.add(4);
+            params.add(StudentEnum.DELETE.type);
             params.add(sid);
             update = update(sql, params);
         } catch (Exception e) {
