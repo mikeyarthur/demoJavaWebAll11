@@ -25,4 +25,11 @@ public interface StudentDao {
      * @return        模糊查询的总条数
      */
     public int total(String stuname, String stuno, int sex);
+
+    /**
+     * 新增学生
+     * @param student   学生对象（包含新增的所有信息）
+     * @return          数据库影响条数
+     */
+    public int insertStu(Student student);
 }

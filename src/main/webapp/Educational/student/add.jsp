@@ -27,7 +27,7 @@
         </div>
 </div>
 <div class="cztable">
-    <form action="list.jsp" method="post">
+    <form action="/Educational/student/addStu" method="post">
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
@@ -46,7 +46,7 @@
                 <tr>
                     <td>班级<span style="color:red">*</span>：</td>
                     <td>
-                        <select>
+                        <select name="gid">
 <%--                        	<option>一班</option>--%>
 <%--                            <option>二班</option>--%>
 <%--                            <option>三班</option>--%>
@@ -59,7 +59,8 @@
                 <tr>
                     <td>性别<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="sex" checked value="1" />男 <input type="radio" name="sex" value="0"/>女
+                        <input type="radio" name="sex" checked value="1" />男
+                        <input type="radio" name="sex" value="0"/>女
                     </td>
                 </tr>
 

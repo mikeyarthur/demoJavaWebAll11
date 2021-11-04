@@ -37,4 +37,15 @@ public class StudentServiceImpl implements StudentService {
     public int total(String stuname, String stuno, int sex) {
         return dao.total(stuname, stuno, sex);
     }
+
+    /**
+     * 新增学生
+     *
+     * @param student 学生对象（包含新增的所有信息）
+     * @return 数据库影响条数
+     */
+    @Override
+    public int insertStu(Student student) {
+        return dao.insertStu(student);
+    }
 }

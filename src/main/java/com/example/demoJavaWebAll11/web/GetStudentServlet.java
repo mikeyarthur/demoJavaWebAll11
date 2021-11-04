@@ -21,7 +21,7 @@ public class GetStudentServlet extends HttpServlet {
         String stuname = req.getParameter("stuname");
         String stuno = req.getParameter("stuno");
         String sex = req.getParameter("sex");
-        int sexIndex = sex==null ? -1 : Integer.parseInt(sex);
+        int sexIndex = (sex==null || sex.length() == 0) ? -1 : Integer.parseInt(sex);
 
         // 1.2. 分页数据（limit 开始位置 显示条数）
         // 页码值(当前页码值)

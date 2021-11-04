@@ -6,6 +6,7 @@ import com.example.demoJavaWebAll11.dao.StudentDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class StudentDaoImpl extends DBUtils implements StudentDao {
@@ -159,5 +160,45 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
         }
 
         return total;
+    }
+
+    /**
+     * 新增学生
+     *
+     * @param student 学生对象（包含新增的所有信息）
+     * @return 数据库影响条数
+     */
+    @Override
+    public int insertStu(Student student) {
+        int result = 0;
+        try {
+            // 第一个传null，自动递增
+            String sql = "insert into student values (null, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            List params = new ArrayList();
+            params.add(student.getStuName());
+            params.add(student.getStuNo());
+            params.add(student.getSex());
+            params.add(student.getPhone());
+            params.add(student.getEmail());
+            params.add(student.getRegistered());
+            params.add(student.getAddress());
+            params.add(student.getProfession());
+            params.add(student.getIdNumber());
+            params.add(student.getPolitics());
+//        params.add(student.getRegDate());
+            params.add(new Date());
+//        params.add(student.getState());
+            params.add(1);  // 1 表示在读
+            params.add(student.getIntroduction());
+            params.add(student.getGid());
+
+            result = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return result;
     }
 }
