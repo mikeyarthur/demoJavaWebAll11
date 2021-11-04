@@ -27,26 +27,27 @@
         </div>
 </div>
 <div class="cztable">
-    <form action="list.jsp" method="post">
+    <form action="/Educational/student/updateStu" method="post">
+        <input type="hidden" name="sid" value="${stu.stuId}"/>
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="${stu.stuNo}" />
+						<input type="text"  name="stuNo" value="${stu.stuNo}" />
 					</td>
                 </tr>
 
                 <tr  width="120px;">
                     <td>姓名<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="${stu.stuName}" />
+						<input type="text"  name="stuName" value="${stu.stuName}" />
 					</td>
                 </tr>
                  
                 <tr>
                     <td>班级<span style="color:red">*</span>：</td>
                     <td>
-                        <select>
+                        <select name="gid">
 <%--                        	<option>一班</option>--%>
 <%--                            <option>二班</option>--%>
 <%--                            <option>三班</option>--%>
@@ -61,8 +62,8 @@
                     <td>性别<span style="color:red">*</span>：</td>
                     <td>
 <%--                        <input type="radio" name="gender" checked value="1" />男 <input type="radio" name="gender" value="0"/>女--%>
-                        <input type="radio" name="gender" ${stu.sex == 1 ? 'checked' : ''} value="1" />男
-                        <input type="radio" name="gender" ${stu.sex == 0 ? 'checked' : ''} value="0"/>女
+                        <input type="radio" name="sex" ${stu.sex == 1 ? 'checked' : ''} value="1" />男
+                        <input type="radio" name="sex" ${stu.sex == 0 ? 'checked' : ''} value="0"/>女
                     </td>
                 </tr>
 
@@ -70,47 +71,47 @@
 				<tr>
                     <td>EMAIL：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.email}" />
+                        <input type="text" name="email" value="${stu.email}" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>联系电话：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.phone}" />
+                        <input type="text" name="phone" value="${stu.phone}" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>户口所在地：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.registered}"  />
+                        <input type="text" name="registered" value="${stu.registered}"  />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>住址：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.address}" />
+                        <input type="text" name="address" value="${stu.address}" />
                     </td>                
                 </tr>
 				<tr>
                     <td>政治面貌：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.politics}" />
+                        <input type="text" name="politics" value="${stu.politics}" />
                     </td>                
                 </tr>
 				<tr>
                     <td>身份证号：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.idNumber}" />
+                        <input type="text" name="idNumber" value="${stu.idNumber}" />
                     </td>                
                 </tr>
 				
 				<tr>
                     <td>专业：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="${stu.profession}" />
+                        <input type="text" name="profession" value="${stu.profession}" />
                     </td>                
                 </tr>
 					
@@ -118,7 +119,7 @@
 				<tr>
                     <td>简介<span style="color:red">*</span>：</td>
                     <td>
-                        <textarea>${stu.introduction}</textarea>
+                        <textarea name="introduction">${stu.introduction}</textarea>
                     </td>
                 </tr>
 				<tr>

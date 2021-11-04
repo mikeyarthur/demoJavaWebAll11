@@ -241,4 +241,44 @@ public class StudentDaoImpl extends DBUtils implements StudentDao {
 
         return student;
     }
+
+    /**
+     * @param student 修改学生信息的学生对象
+     * @return 影响数据库的条数
+     */
+    @Override
+    public int updateStu(Student student) {
+        int update = 0;
+        try {
+            List params = new ArrayList();
+//            String sql = "update student set stuname=?, address=?, sex=? where stuid=? ";
+//            params.add(student.getStuName());
+//            params.add(student.getAddress());
+//            params.add(student.getSex());
+//            params.add(student.getStuId());
+
+            String sql = "update student set stuname=?, stuno=?, sex=?, phone=?, email=?, registered=?, address=?, profession=?, idnumber=?, politics=?, introduction=?, gid=? where stuid=? ";
+            params.add(student.getStuName());
+            params.add(student.getStuNo());
+            params.add(student.getSex());
+            params.add(student.getPhone());
+            params.add(student.getEmail());
+            params.add(student.getRegistered());
+            params.add(student.getAddress());
+            params.add(student.getProfession());
+            params.add(student.getIdNumber());
+            params.add(student.getPolitics());
+            params.add(student.getIntroduction());
+            params.add(student.getGid());
+            params.add(student.getStuId());
+
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return update;
+    }
 }

@@ -39,4 +39,11 @@ public interface StudentDao {
      * @return    主键查询的学生对象
      */
     public Student findById(int sid);
+
+    /**
+     *
+     * @param student  修改学生信息的学生对象
+     * @return          影响数据库的条数
+     */
+    public int updateStu(Student student);
 }

@@ -57,4 +57,13 @@ public class StudentServiceImpl implements StudentService {
     public Student findById(int sid) {
         return dao.findById(sid);
     }
+
+    /**
+     * @param student 修改学生信息的学生对象
+     * @return 影响数据库的条数
+     */
+    @Override
+    public int updateStu(Student student) {
+        return dao.updateStu(student);
+    }
 }
