@@ -114,7 +114,7 @@
 <%--                    </tr> --%>
 
 
-					<c:forEach items="${stulist}" var="stu">
+					<c:forEach items="${p1.dataList}" var="stu">
 						<tr id="${stu.stuNo}">
 							<td align="center">${stu.stuNo}</td>
 							<td align="center">${stu.stuName}</td>
@@ -143,18 +143,18 @@
 									首页
 								</a>
 <%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
-								<a style="text-decoration: none;" href="studentServlet?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${p1.pageIndex - 1 <= 1 ? 1 : p1.pageIndex - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									上一页
 								</a>
 <%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
-								<a style="text-decoration: none;" href="studentServlet?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${p1.pageIndex + 1 >= p1.totalPages ? p1.totalPages : p1.pageIndex + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									下一页
 								</a>
 <%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
-								<a style="text-decoration: none;" href="studentServlet?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${p1.totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									尾页
 								</a>
-								共${total}条 每页显示 ${pageSize}/${total}
+								共${p1.total}条 每页显示 ${p1.pageSize}/${p1.totalPages}
 						</td>
                     </tr>
                 </tbody>
