@@ -33,15 +33,20 @@
 		<span>
                 <span style="float: left;">当前位置是：教务中心-》学生管理</span>
                 <span style="float: right; margin-right: 8px; font-weight: bold;">
-                    <a style="text-decoration: none;" href="/Educational/student/getGradeList">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
+<%--                    <a style="text-decoration: none;" href="/Educational/student/getGradeList">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;--%>
+<%--					1. 使用绝对路径的方式请求--%>
+<%--                    <a style="text-decoration: none;" href="/Educational/student/studentServlet?operation=getGradeList">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;--%>
+<%--					2. 使用相对路径的方式请求--%>
+                    <a style="text-decoration: none;" href="studentServlet?operation=getGradeList">【新增学生】</a>&emsp;&emsp;&emsp;&emsp;
                 </span>
             </span>
 	</div>
 
 	<div class="cztable">
 		<div>
-				  <form action="/Educational/student/getStudentList" method="get">
-                    学生名称: 
+<%--				  <form action="/Educational/student/getStudentList" method="get">--%>
+				  <form action="Educational/student/studentServlet" method="get">
+                    学生名称:
 					<input type="text" name="stuname" value="${stuname}"/>
                      学生学号: 
 					<input type="text" name="stuno" value="${stuno}" />
@@ -118,8 +123,10 @@
 							<td align="center">${stu.profession}</td>
 							<td align="center">${stu.regDate}</td>
 							<td align="center">
-								<a href="/Educational/student/findbyid?sid=${stu.stuId}">修改</a>
-								<a href="/Educational/student/deletebyid?sid=${stu.stuId}">删除</a>
+<%--								<a href="/Educational/student/findbyid?sid=${stu.stuId}">修改</a>--%>
+								<a href="studentServlet?operation=findById&sid=${stu.stuId}">修改</a>
+<%--								<a href="/Educational/student/deletebyid?sid=${stu.stuId}">删除</a>--%>
+								<a href="studentServlet?operation=deleteById&sid=${stu.stuId}">删除</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -131,16 +138,20 @@
 <%--                            首页 上一页  ... 7 8 9 10 11 12 ... 下一页 尾页 共1234条 每页显示 10/23 </a>--%>
 <%--                        </td>--%>
 						<td colspan="20" style="text-align: center;">
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+<%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
+								<a style="text-decoration: none;" href="studentServlet?stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									首页
 								</a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+<%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${index - 1 <= 1 ? 1 : index - 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									上一页
 								</a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+<%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${index + 1 >= totalPages ? totalPages : index + 1}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									下一页
 								</a>
-								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
+<%--								<a style="text-decoration: none;" href="/Educational/student/getStudentList?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">--%>
+								<a style="text-decoration: none;" href="studentServlet?pageIndex=${totalPages}&stuname=${stuname}&stuno=${stuno}&sex=${sex}">
 									尾页
 								</a>
 								共${total}条 每页显示 ${pageSize}/${total}

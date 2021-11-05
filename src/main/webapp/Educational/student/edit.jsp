@@ -27,7 +27,8 @@
         </div>
 </div>
 <div class="cztable">
-    <form action="/Educational/student/updateStu" method="post">
+<%--    <form action="/Educational/student/updateStu" method="post">--%>
+    <form action="studentServlet?operation=updateStu" method="post">
         <input type="hidden" name="sid" value="${stu.stuId}"/>
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">

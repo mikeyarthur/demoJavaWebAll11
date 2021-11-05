@@ -50,7 +50,8 @@
 								<img height=9  src="./img/menu_icon.gif" width=9>
 							</td>
                             <td>
-								<a class=menuchild  href="Educational/student/getStudentList"   target="right">学生管理</a>
+<%--								<a class=menuchild  href="Educational/student/getStudentList"   target="right">学生管理</a>--%>
+								<a class=menuchild  href="Educational/student/studentServlet"   target="right">学生管理</a>
 							</td>
 						</tr>
 						

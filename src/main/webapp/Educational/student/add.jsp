@@ -27,7 +27,10 @@
         </div>
 </div>
 <div class="cztable">
-    <form action="/Educational/student/addStu" method="post">
+    <%--    1. 使用绝对路径--%>
+<%--    <form action="/Educational/student/studentServlet?operation=insertStu" method="post">--%>
+<%--    2. 使用相对路径--%>
+    <form action="studentServlet?operation=insertStu" method="post">
 	<table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="10%">学号：<span style="color:red">*</span>：</td>
@@ -101,6 +104,7 @@
 				<tr>
                     <td>身份证号：</td>
                     <td>
+<%--                        这里挖了一个坑，身份证长度，在数据库设计表是20个字符，这里默认22个字符，不修改的话，数据库update失败--%>
                         <input type="text" name="idNumber" value="110111111111111111111" />
                     </td>                
                 </tr>
