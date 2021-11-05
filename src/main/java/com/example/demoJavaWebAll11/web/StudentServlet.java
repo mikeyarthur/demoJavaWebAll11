@@ -155,11 +155,13 @@ public class StudentServlet extends HttpServlet {
         if (result > 0) {
             // 新增成功
             // js方式，后台发送请求
-            writer.println("<script>alert('新增成功');location.href='/Educational/student/getStudentList';</script>");
+//            writer.println("<script>alert('新增成功');location.href='/Educational/student/getStudentList';</script>");
+            writer.println("<script>alert('新增成功');location.href='/Educational/student/studentServlet';</script>");
         } else {
             // 新增失败
             // js方式，后台发送请求
-            writer.println("<script>alert('新增失败');location.href='/Educational/student/getGradeList';</script>");
+//            writer.println("<script>alert('新增失败');location.href='/Educational/student/getGradeList';</script>");
+            writer.println("<script>alert('新增失败');location.href='/Educational/student/studentServlet?operation=getGradeList';</script>");
         }
     }
     protected void deleteById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -174,9 +176,9 @@ public class StudentServlet extends HttpServlet {
         if (result > 0) {
             // 转发
 //            req.getRequestDispatcher("list.jsp").forward(req, resp);
-            writer.println("<script>alert('删除成功');location.href='/Educational/student/getStudentList'</script>");
+            writer.println("<script>alert('删除成功');location.href='/Educational/student/studentServlet'</script>");
         } else {
-            writer.println("<script>alert('删除失败');location.href='/Educational/student/getStudentList'</script>");
+            writer.println("<script>alert('删除失败');location.href='/Educational/student/studentServlet'</script>");
         }
     }
     protected void findById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -242,9 +244,9 @@ public class StudentServlet extends HttpServlet {
         if (result > 0) {
             // 转发
 //            req.getRequestDispatcher("list.jsp").forward(req, resp);
-            writer.println("<script>alert('修改成功');location.href='/Educational/student/getStudentList'</script>");
+            writer.println("<script>alert('修改成功');location.href='/Educational/student/studentServlet'</script>");
         } else {
-            writer.println("<script>alert('修改失败');location.href='/Educational/student/findbyid?sid=" + sid + "'</script>");
+            writer.println("<script>alert('修改失败');location.href='/Educational/student/studentServlet?operation=findbyid&sid=" + sid + "'</script>");
         }
     }
 }

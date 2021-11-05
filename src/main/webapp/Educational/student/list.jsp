@@ -45,7 +45,7 @@
 	<div class="cztable">
 		<div>
 <%--				  <form action="/Educational/student/getStudentList" method="get">--%>
-				  <form action="Educational/student/studentServlet" method="get">
+				  <form action="studentServlet" method="get">
                     学生名称:
 					<input type="text" name="stuname" value="${stuname}"/>
                      学生学号: 
