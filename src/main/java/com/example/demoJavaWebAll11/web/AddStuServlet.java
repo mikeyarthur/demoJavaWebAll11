@@ -16,8 +16,9 @@ import java.io.PrintWriter;
 public class AddStuServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 注意编码
-        req.setCharacterEncoding("utf-8");
+//        // 1. 注意编码
+//        已经加了filter_encoding，这里可以省略
+//        req.setCharacterEncoding("utf-8");
         // 2. 获取表单数据
         String stuNo = req.getParameter("stuNo");
         String stuName = req.getParameter("stuName");

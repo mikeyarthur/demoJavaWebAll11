@@ -16,8 +16,13 @@ import java.io.PrintWriter;
 public class UpdateStuServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 注意编码
-        req.setCharacterEncoding("utf-8");
+//        // 1. 注意编码
+//        req.setCharacterEncoding("utf-8");
+//        如果不处理乱码的话，运行时会报错误，可以通过web.xml增加filter_encoding的连接，或者filter加元注解
+//        com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'stuname' at row 1
+//        com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'address' at row 1
+
+
         // 2. 获取表单数据
         String sid = req.getParameter("sid");
         String stuName = req.getParameter("stuName");
