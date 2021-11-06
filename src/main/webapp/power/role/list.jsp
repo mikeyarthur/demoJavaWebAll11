@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
@@ -24,10 +25,9 @@
    
 
 <div class="div_head" style="width: 100%;text-align:center;">
-		<span> <span style="float:left">当前位置是：权限管理-》菜单管理</span> <span
+		<span> <span style="float:left">当前位置是：权限管理-》角色管理</span> <span
 			style="float:right;margin-right: 8px;font-weight: bold">
-            <a style="text-decoration: none;" href="javascript:alert('操作成功！');">【批量删除】</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a style="text-decoration: none;" href="add.html">【新增菜单】</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a style="text-decoration: none;" href="add.jsp">【新增角色】</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</span>
 		</span>
 	</div>
@@ -51,15 +51,12 @@
                     </th>
                     
                     <th scope="col">
-                        菜单名称
-                    </th>
-                    <th scope="col">
-                        URL
+                        角色名称
                     </th>
                     <th scope="col">
                         状态
                     </th>
-                    <th scope="col">
+                    <th scope="col" width="300px">
                         操作
                     </th>
                 </tr>
@@ -73,70 +70,19 @@
                     </td>
                     <td>
                        个人信息
-                    </td>
-                    <td>
-                       <a href="">xxxx</a>
-                    </td>
-                    
+                    </td>                    
                     <td>&nbsp;
                         启用
                     </td>
                     
                     <td>&nbsp;
-                        <a href="info.html">详情</a>						   
-                        <a href="edit.html">修改</a>
+                    	<a href="javascript:alert('操作成功！');">启用</a>
+                        <a href="info.jsp">详情</a>
+                        <a href="edit.jsp">修改</a>
 						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>						   
                     </td>
                 </tr>
-                <tr align="center">
-                    <th><input type="checkbox"/></th>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                       个人信息
-                    </td>
-                    <td>
-                       <a href="">xxxx</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                        启用
-                    </td>
-                    
-                    <td>&nbsp;
-                        <a href="info.html">详情</a>						   
-                        <a href="edit.html">修改</a>
-						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>						   
-                    </td>
-                </tr>
-                <tr align="center">
-                    <th><input type="checkbox"/></th>
-                    <td>
-                        3
-                    </td>
-                    <td>
-                       个人信息
-                    </td>
-                    <td>
-                       <a href="">xxxx</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                        启用
-                    </td>
-                    
-                    <td>&nbsp;
-                        <a href="info.html">详情</a>						   
-                        <a href="edit.html">修改</a>
-						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>						   
-                    </td>
-                </tr>
-                
-                
-                
                
-                
                 
             </tbody>
         </table>

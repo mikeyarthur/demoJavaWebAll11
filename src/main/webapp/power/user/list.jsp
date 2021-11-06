@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
@@ -27,7 +28,7 @@
 			style="float:right;margin-right: 8px;font-weight: bold">
           
             <a style="text-decoration: none;" href="javascript:alert('操作成功！');">【批量删除】</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a style="text-decoration: none;" href="add.html">【新增人员】</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a style="text-decoration: none;" href="add.jsp">【新增人员】</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</span>
 		</span>
 	</div>
@@ -74,7 +75,7 @@
                       zhangsan
                     </td>
                     <td>
-                       <a href="info.html">张三</a>
+                       <a href="info.jsp">张三</a>
                     </td>
                     
                     <td>&nbsp;
@@ -82,7 +83,7 @@
                     </td>
                     
                     <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
+                        <a href="edit.jsp">修改</a>
 						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>
                     </td>
                 </tr>
@@ -97,14 +98,14 @@
                       zhangsan
                     </td>
                     <td>
-                       <a href="info.html">李四</a>
+                       <a href="info.jsp">李四</a>
                     </td>
                     
                     <td>&nbsp;
                        学生
                     </td>
                     <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
+                        <a href="edit.jsp">修改</a>
 							<a href="JavaScript:void(0)" onclik="del();return false" class="tablelink">删除</a>
                     </td>
                 </tr>
@@ -119,14 +120,14 @@
                       zhangsan
                     </td>
                     <td>
-                       <a href="info.html">王五</a>
+                       <a href="info.jsp">王五</a>
                     </td>
                     
                     <td>&nbsp;
                        老师
                     </td>
                     <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
+                        <a href="edit.jsp">修改</a>
 						<a href="JavaScript:void(0)" onclik="del();return false" class="tablelink">删除</a>
                     </td>
                 </tr>
@@ -139,14 +140,14 @@
                       zhangsan
                     </td>
                     <td>
-                       <a href="info.html">赵六</a>
+                       <a href="info.jsp">赵六</a>
                     </td>
                     
                     <td>&nbsp;
                        主任
                     </td>
                     <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
+                        <a href="edit.jsp">修改</a>
 						<a href="JavaScript:void(0) onclik="del();return false" class="tablelink">删除</a>
                     </td>
                 </tr>

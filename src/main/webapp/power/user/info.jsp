@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
@@ -19,7 +20,7 @@
 
 		<div class="div_head">
             <span>
-                <span style="float:left">当前位置是：权限管理-》人员管理-》新增</span>
+                <span style="float:left">当前位置是：权限管理-》人员管理-》详情</span>
                 <span style="float:right;margin-right: 8px;font-weight: bold">
                     <a style="text-decoration: none" href="javascript:history.back();">【返回】</a>
                 </span>
@@ -27,7 +28,7 @@
         </div>
 </div>
 <div class="cztable">
-	<form action="list.html" method="post">
+	<form action="list.jsp" method="post">
 <table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="120px">用户名：<span style="color:red">*</span>：</td>
@@ -64,6 +65,7 @@
 							<option>管理员</option>
 							<option>主任</option>
 							<option>老师</option>
+							<option>学生</option>
 						</select>
                     </td>
                 </tr>
@@ -88,7 +90,7 @@
                         <input type="text" name="f_goods_image" value="朝阳" />
                     </td>                
                 </tr>
-				
+				</tr>
 				<tr>
                     <td>身份证号：</td>
                     <td>
@@ -103,11 +105,7 @@
                         <textarea>一个新开辟领域的探讨，探讨摸索</textarea>
                     </td>
                 </tr>
-				<tr>
-					<td colspan=2 align="center">
-						<input type="submit" value="添加" /> 
-					</td> 
-				</tr>
+				
 			</table>
 	</form>
 </div>

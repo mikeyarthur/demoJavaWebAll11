@@ -79,7 +79,7 @@
                                 <img height=9 src="./img/menu_icon.gif" width=9>
                             </td>
                             <td>
-                                <a class=menuchild  href="power/user/list.html"  target="right">用户管理</a>
+                                <a class=menuchild  href="power/user/list.jsp"  target="right">用户管理</a>
                             </td>
                         </tr>
 
@@ -88,7 +88,7 @@
                                 <img height=9 src="./img/menu_icon.gif" width=9>
                             </td>
                             <td>
-                                <a class=menuchild  href="power/role/list.html"  target="right">角色管理</a>
+                                <a class=menuchild  href="power/role/list.jsp"  target="right">角色管理</a>
                             </td>
                         </tr>
 
@@ -97,7 +97,7 @@
                                 <img height=9  src="./img/menu_icon.gif" width=9>
                             </td>
                             <td>
-                                <a class=menuchild  href="power/menu/list.html"   target="right">菜单管理</a>
+                                <a class=menuchild  href="power/menu/list.jsp"   target="right">菜单管理</a>
                             </td>
                         </tr>
                         <tr height=4>
