@@ -1,5 +1,6 @@
 package com.example.demoJavaWebAll11.dao.impl;
 
+import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.bean.Users;
 import com.example.demoJavaWebAll11.dao.DBUtils;
 import com.example.demoJavaWebAll11.dao.UsersDao;
@@ -47,5 +48,97 @@ public class UsersDaoImpl extends DBUtils implements UsersDao {
         }
 
         return users;
+    }
+
+    /**
+     * 查询用户列表
+     *
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<Users> getUsersList(int pageIndex, int pageSize) {
+        // 这里不用null
+        List<Users> usersList = new ArrayList<Users>();
+        try {
+            // 看 页面，是两表联查的数据
+            // SELECT * FROM users u, role r WHERE u.roleid=r.roleid;
+            // SELECT userid, loginname, realname, rolename FROM users u, role r WHERE u.roleid=r.roleid;
+//        String sql = "select * from users limit ?,?";
+            String sql = "SELECT userid, loginname, realname, rolename FROM users u, role r WHERE u.roleid=r.roleid limit ?,?";
+            List params = new ArrayList();
+            params.add((pageIndex - 1) * pageSize);
+            params.add(pageSize);
+
+            resultSet = query(sql, params);
+            while (resultSet.next()) {
+                // 1. 取出各表的数据
+                Users users = new Users();
+                users.setUserId(resultSet.getInt("userid"));
+                users.setLoginName(resultSet.getString("loginname"));
+                users.setRealName(resultSet.getString("realname"));
+
+                Role role = new Role();
+                role.setRoleName(resultSet.getString("rolename"));
+
+                // 2. 建立关系
+                users.setRole(role);
+
+                usersList.add(users);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return usersList;
+    }
+
+    /**
+     * 没有模糊查找条件，传参为空
+     *
+     * @return 查询总条数
+     */
+    @Override
+    public int total() {
+        int total = 0;
+        try {
+            // 看 页面，是两表联查的数据
+            // SELECT * FROM users u, role r WHERE u.roleid=r.roleid;
+            // SELECT userid, loginname, realname, rolename FROM users u, role r WHERE u.roleid=r.roleid;
+//        String sql = "select * from users limit ?,?";
+//            String sql = "SELECT userid, loginname, realname, rolename FROM users u, role r WHERE u.roleid=r.roleid limit ?,?";
+//            String sql = "SELECT count(*) FROM users u, role r WHERE u.roleid=r.roleid limit ?,?";
+            String sql = "SELECT count(1) FROM users u, role r WHERE u.roleid=r.roleid";
+//            List params = new ArrayList();
+//            params.add(pageIndex);
+//            params.add(pageSize);
+
+//            resultSet = query(sql, params);
+            resultSet = query(sql, null);
+            while (resultSet.next()) {
+//                // 1. 取出各表的数据
+//                Users users = new Users();
+//                users.setUserId(resultSet.getInt("userid"));
+//                users.setLoginName(resultSet.getString("loginname"));
+//                users.setRealName(resultSet.getString("realname"));
+//
+//                Role role = new Role();
+//                role.setRoleName(resultSet.getString("rolename"));
+//
+//                // 2. 建立关系
+//                users.setRole(role);
+//
+//                usersList.add(users);
+                total = resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return total;
     }
 }
