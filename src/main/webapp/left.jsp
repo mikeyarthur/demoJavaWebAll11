@@ -61,10 +61,52 @@
                             <td colspan=2></td>
 						</tr>
 					</table>
-					
-					
-									
-				</td>
+
+                    <table cellspacing=0 cellpadding=0 width=150 border=0>
+                        <tr height=22>
+                            <td style="padding-left: 30px" background=./img/menu_bt.jpg>
+                                <a     class=menuparent onclick=expand(7)    href="javascript:void(0);">权限管理</a>
+                            </td>
+                        </tr>
+                        <tr height=4>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <table id=child7 style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>
+                        <tr height=20>
+                            <td align=middle width=30>
+                                <img height=9 src="./img/menu_icon.gif" width=9>
+                            </td>
+                            <td>
+                                <a class=menuchild  href="power/user/list.html"  target="right">用户管理</a>
+                            </td>
+                        </tr>
+
+                        <tr height=20>
+                            <td align=middle width=30>
+                                <img height=9 src="./img/menu_icon.gif" width=9>
+                            </td>
+                            <td>
+                                <a class=menuchild  href="power/role/list.html"  target="right">角色管理</a>
+                            </td>
+                        </tr>
+
+                        <tr height=20>
+                            <td align=middle width=30>
+                                <img height=9  src="./img/menu_icon.gif" width=9>
+                            </td>
+                            <td>
+                                <a class=menuchild  href="power/menu/list.html"   target="right">菜单管理</a>
+                            </td>
+                        </tr>
+                        <tr height=4>
+                            <td colspan=2></td>
+                        </tr>
+                    </table>
+
+
+                </td>
                 <td width=1 bgcolor=#d1e6f7></td>
             </tr>
         </table>
