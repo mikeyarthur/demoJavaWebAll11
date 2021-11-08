@@ -29,39 +29,44 @@
         </div>
 </div>
 <div class="cztable">
-	<form action="list.jsp" method="post">
+	<form action="users?operation=addUser" method="post">
 <table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="120px">用户名：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="杨XX" />
+<%--						<input type="text"  name="f_goods_image" value="杨XX" />--%>
+						<input type="text"  name="loginname" value="杨XX" />
 					</td>
                 </tr>
 
 				<tr  width="120px;">
                     <td>密码：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="password"  name="f_goods_image" value="杨XX" />
+<%--						<input type="password"  name="f_goods_image" value="杨XX" />--%>
+						<input type="password"  name="password" value="杨XX" />
 					</td>
                 </tr>
 
                 <tr  width="120px;">
                     <td>姓名<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="杨XX" />
+<%--						<input type="text"  name="f_goods_image" value="杨XX" />--%>
+						<input type="text"  name="realname" value="杨XX" />
 					</td>
                 </tr>
                 <tr>
                     <td>性别<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="gender" checked value="1" />男 <input type="radio" name="gender" value="0"/>女
+<%--                        <input type="radio" name="gender" checked value="1" />男 <input type="radio" name="gender" value="0"/>女--%>
+                        <input type="radio" name="sex" checked value="1" />男
+                        <input type="radio" name="sex" value="0"/>女
                     </td>
                 </tr>
 
 				<tr>
                     <td>角色：<span style="color:red">*</span>：</td>
                     <td>
-                        <select>
+                        <select name="roleId">
 <%--							<option>--请选择--</option>--%>
 <%--							<option>管理员</option>--%>
 <%--							<option>主任</option>--%>
@@ -76,28 +81,28 @@
 				<tr>
                     <td>EMAIL：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="1332@126.com" />
+                        <input type="text" name="email" value="1332@126.com" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>联系电话：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="13333333333" />
+                        <input type="text" name="phone" value="13333333333" />
                     </td>                
                 </tr>
 
 				<tr>
                     <td>住址：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="朝阳" />
+                        <input type="text" name="address" value="朝阳" />
                     </td>                
                 </tr>
 				
 				<tr>
                     <td>身份证号：</td>
                     <td>
-                        <input type="text" name="f_goods_image" value="110111111111111111111" />
+                        <input type="text" name="cardid" value="110111111111111111111" />
                     </td>                
                 </tr>
 				
@@ -105,7 +110,7 @@
 				<tr>
                     <td>简介<span style="color:red">*</span>：</td>
                     <td>
-                        <textarea>一个新开辟领域的探讨，探讨摸索</textarea>
+                        <textarea name="desc">一个新开辟领域的探讨，探讨摸索</textarea>
                     </td>
                 </tr>
 				<tr>

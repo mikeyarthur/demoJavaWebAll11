@@ -26,6 +26,10 @@ public class UsersServlet extends HttpServlet {
             select(req, resp);
         } else if ("getRoleList".equals(operation)) {
             getRoleList(req, resp);
+        } else if ("addUser".equals(operation)) {
+            addUser(req, resp);
+        } else {
+            select(req, resp);
         }
     }
 
@@ -68,6 +72,44 @@ public class UsersServlet extends HttpServlet {
             resp.setContentType("text/html;charset=utf-8");
             PrintWriter writer = resp.getWriter();
             writer.println("<script>alert('Not perform as expected, please re-check!');</script>");
+        }
+    }
+
+    protected void addUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 接收参数
+        String loginname = req.getParameter("loginname");
+        String password = req.getParameter("password");
+        String realname = req.getParameter("realname");
+        String sex = req.getParameter("sex");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
+        String address = req.getParameter("address");
+        String cardid = req.getParameter("cardid");
+        String desc = req.getParameter("desc");
+        String roleId = req.getParameter("roleId");
+
+
+        Users users = new Users();
+        users.setLoginName(loginname);
+        users.setPassWord(password);
+        users.setRealName(realname);
+        users.setSex(Integer.parseInt(sex));
+        users.setEmail(email);
+        users.setAddress(address);
+        users.setPhone(phone);
+        users.setCardId(cardid);
+        users.setDesc(desc);
+        users.setRoleId(Integer.parseInt(roleId));
+
+        // 2. 调取service
+        int update = usersService.addUser(users);
+        // 3. 存值跳转页面
+        resp.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = resp.getWriter();
+        if (update > 0) {
+            writer.println("<script>alert('新增成功');location.href='/power/user/users?operation=select';</script>");
+        } else {
+            writer.println("<script>alert('新增失败');location.href='/power/user/users?operation=getRoleList&nextOperation=addUser';</script>");
         }
     }
 }

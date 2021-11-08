@@ -52,4 +52,15 @@ public class UsersServiceImpl implements UsersService {
     public List<Role> getRoleList() {
         return usersDao.getRoleList();
     }
+
+    /**
+     * 新增用户
+     *
+     * @param user 包含用户信息的对象
+     * @return 影响的数据库条数
+     */
+    @Override
+    public int addUser(Users user) {
+        return usersDao.addUser(user);
+    }
 }

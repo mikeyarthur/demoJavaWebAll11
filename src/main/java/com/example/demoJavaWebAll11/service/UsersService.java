@@ -33,4 +33,11 @@ public interface UsersService {
      * @return 获取角色列表
      */
     public List<Role> getRoleList();
+
+    /**
+     * 新增用户
+     * @param user  包含用户信息的对象
+     * @return     影响的数据库条数
+     */
+    public int addUser(Users user);
 }

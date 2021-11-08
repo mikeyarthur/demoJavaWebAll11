@@ -167,4 +167,49 @@ public class UsersDaoImpl extends DBUtils implements UsersDao {
 
         return roles;
     }
+
+    /**
+     * 新增用户
+     *
+     * @param user 包含用户信息的对象
+     * @return 影响的数据库条数
+     */
+    @Override
+    public int addUser(Users user) {
+        int update = 0;
+        try {
+            List params = new ArrayList();
+//        int userid = -1;
+//        // 1. 先查询当前已有的用户数，确认插入的userid
+//        String sqlQueryAll = "select count(1) from users";
+//        resultSet = query(sqlQueryAll, null);
+//        while (resultSet.next()) {
+////            插入的用户userid = 已有的用户数 + 1
+//            userid = resultSet.getInt(1) + 1;
+//        }
+
+//        String sql = "INSERT INTO users VALUES (NULL, 'loginname', 'password', 'realname', 1, 'email', 'address', 'phone', 'cardid', 'desc', 1);";
+//        String sql = "INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?,    ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            params.add(null);
+            params.add(user.getLoginName());
+            params.add(user.getPassWord());
+            params.add(user.getRealName());
+            params.add(user.getSex());
+            params.add(user.getEmail());
+            params.add(user.getAddress());
+            params.add(user.getPhone());
+            params.add(user.getCardId());
+            params.add(user.getDesc());
+            params.add(user.getRoleId());
+
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return update;
+    }
 }
