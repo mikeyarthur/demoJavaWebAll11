@@ -141,4 +141,30 @@ public class UsersDaoImpl extends DBUtils implements UsersDao {
 
         return total;
     }
+
+    /**
+     * @return 获取角色列表
+     */
+    @Override
+    public List<Role> getRoleList() {
+        List<Role> roles = new ArrayList<>();
+        try {
+            String sql = "select * from role";
+//        List params = new ArrayList();
+            resultSet = query(sql, null);
+            while (resultSet.next()) {
+                Role role = new Role();
+                role.setRoleId(resultSet.getInt("roleid"));
+                role.setRoleName(resultSet.getString("rolename"));
+                role.setRoleState(resultSet.getInt("rolestate"));
+                roles.add(role);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return roles;
+    }
 }

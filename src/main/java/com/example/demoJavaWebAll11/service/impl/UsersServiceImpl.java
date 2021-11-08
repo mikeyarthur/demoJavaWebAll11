@@ -1,5 +1,6 @@
 package com.example.demoJavaWebAll11.service.impl;
 
+import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.bean.Users;
 import com.example.demoJavaWebAll11.dao.UsersDao;
 import com.example.demoJavaWebAll11.dao.impl.UsersDaoImpl;
@@ -42,5 +43,13 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public int total() {
         return usersDao.total();
+    }
+
+    /**
+     * @return 获取角色列表
+     */
+    @Override
+    public List<Role> getRoleList() {
+        return usersDao.getRoleList();
     }
 }

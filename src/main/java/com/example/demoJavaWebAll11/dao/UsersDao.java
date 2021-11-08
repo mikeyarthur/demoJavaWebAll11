@@ -1,5 +1,6 @@
 package com.example.demoJavaWebAll11.dao;
 
+import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.bean.Users;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public interface UsersDao {
      * @return 查询总条数
      */
     public int total();
+
+    /**
+     *
+     * @return 获取角色列表
+     */
+    public List<Role> getRoleList();
 }
