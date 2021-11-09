@@ -11,6 +11,21 @@ public class Menu {
     private String url;
 
     private List<Role> roleList;
+    private List<Menu> secondMenuList;
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", menuName='" + menuName + '\'' +
+                ", upmenuId=" + upmenuId +
+                ", state=" + state +
+                ", desc='" + desc + '\'' +
+                ", url='" + url + '\'' +
+                ", roleList=" + roleList +
+                ", secondMenuList=" + secondMenuList +
+                '}';
+    }
 
     public Integer getMenuId() {
         return menuId;
@@ -66,5 +81,13 @@ public class Menu {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public List<Menu> getSecondMenuList() {
+        return secondMenuList;
+    }
+
+    public void setSecondMenuList(List<Menu> secondMenuList) {
+        this.secondMenuList = secondMenuList;
     }
 }

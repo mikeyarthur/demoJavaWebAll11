@@ -1,7 +1,10 @@
 package com.example.demoJavaWebAll11.web;
 
+import com.example.demoJavaWebAll11.bean.Menu;
 import com.example.demoJavaWebAll11.bean.Role;
+import com.example.demoJavaWebAll11.service.MenuService;
 import com.example.demoJavaWebAll11.service.RoleService;
+import com.example.demoJavaWebAll11.service.impl.MenuServiceImpl;
 import com.example.demoJavaWebAll11.service.impl.RoleServiceImpl;
 import com.example.demoJavaWebAll11.util.PageUtil;
 
@@ -12,21 +15,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/power/role/roles")
 public class RoleServlet extends HttpServlet {
     private RoleService roleService = new RoleServiceImpl();
+    private MenuService menuService = new MenuServiceImpl();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String operation = req.getParameter("operation");
         if ("select".equals(operation)) {
             select(req, resp);
+        } else if ("selectmenus".equals(operation)) {
+            selectmenus(req, resp);
         }
-//        else if ("getRoleList".equals(operation)) {
-//            getRoleList(req, resp);
-//        } else if ("addUser".equals(operation)) {
+//        else if ("addUser".equals(operation)) {
 //            addUser(req, resp);
 //        }
         else {
@@ -57,25 +62,29 @@ public class RoleServlet extends HttpServlet {
         req.getRequestDispatcher("list.jsp").forward(req, resp);
     }
 
-//    protected void getRoleList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        // 1. 接收参数
-//        String nextOperation = req.getParameter("nextOperation");
-//
-//        // 2. 调用service方法
-//        List<Role> roleList = usersService.getRoleList();
-//        req.setAttribute("rlist", roleList);
-//
-//        // 3. 存值和跳转页面
-//        // 注意：转发路径不要带"/", 带"/"的情况是从根目录的路径下开始查找，不带"/"的情况是 /power/user/add.jsp
-//        if ("addUser".equals(nextOperation)) {
-//            req.getRequestDispatcher("add.jsp").forward(req, resp);
-//        } else {
-//            resp.setContentType("text/html;charset=utf-8");
-//            PrintWriter writer = resp.getWriter();
-//            writer.println("<script>alert('Not perform as expected, please re-check!');</script>");
-//        }
-//    }
-//
+    protected void selectmenus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 接收参数
+        String nextOperation = req.getParameter("nextOperation");
+
+        // 2. 调用service方法
+        List<Menu> menuList = menuService.getMenuList();
+        System.out.println("menuList = " + menuList);
+        for (Menu menu : menuList) {
+            System.out.println("menu = " + menu);
+        }
+        req.setAttribute("mlist", menuList);
+
+        // 3. 存值和跳转页面
+        // 注意：转发路径不要带"/", 带"/"的情况是从根目录的路径下开始查找，不带"/"的情况是 /power/user/add.jsp
+        if ("addRole".equals(nextOperation)) {
+            req.getRequestDispatcher("add.jsp").forward(req, resp);
+        } else {
+            resp.setContentType("text/html;charset=utf-8");
+            PrintWriter writer = resp.getWriter();
+            writer.println("<script>alert('Not perform as expected, please re-check!');</script>");
+        }
+    }
+
 //    protected void addUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        // 1. 接收参数
 //        String loginname = req.getParameter("loginname");

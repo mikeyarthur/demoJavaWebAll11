@@ -1,4 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@page language="java" import="com.example.demoJavaWebAll11.bean.Menu" %>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
@@ -40,18 +42,26 @@
                 <tr  width="120px;">
                     <td>菜单资源<span style="color:red">*</span>：</td>
                     <td>
-						<ul>
-                        	<li><input type="checkbox" name="menu"  />权限管理
-                            	<ul>
-                                	<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />人员管理</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />角色管理</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />菜单管理</li>
-                                </ul>
-                            </li>
-                            <li><input type="checkbox" name="menu"  />个人中心</li>
-                            <li><input type="checkbox" name="menu"  />教务中心</li>
+                        <ul>
+<%--                        	<li><input type="checkbox" name="menu"  />权限管理--%>
+<%--                            	<ul>--%>
+<%--                                	<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />人员管理</li>--%>
+<%--                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />角色管理</li>--%>
+<%--                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />菜单管理</li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+                            <c:forEach items="${mlist}" var="m" varStatus="sta">
+                            <li><input type="checkbox" name="${m.menuId}">${m.menuName}</li>
+                            <ul>
+                                <c:forEach items="${m.secondMenuList}" var="s" varStatus="secondSta">
+<%--                                    这里，必须用转义空格打出来才有分级效果--%>
+<%--                                    在td标签里面，单纯用ul li ul li没有分级效果的--%>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="${s.menuId}"/>${s.menuName}</li>
+                                </c:forEach>
+                            </ul>
+                            </c:forEach>
                         </ul>
-					</td>
+                    </td>
                 </tr>
                 
                 <tr>
