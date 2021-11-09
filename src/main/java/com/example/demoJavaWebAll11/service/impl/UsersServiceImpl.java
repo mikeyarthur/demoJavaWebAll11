@@ -1,16 +1,21 @@
 package com.example.demoJavaWebAll11.service.impl;
 
+import com.example.demoJavaWebAll11.bean.Menu;
 import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.bean.Users;
+import com.example.demoJavaWebAll11.dao.RoleDao;
 import com.example.demoJavaWebAll11.dao.UsersDao;
+import com.example.demoJavaWebAll11.dao.impl.RoleDaoImpl;
 import com.example.demoJavaWebAll11.dao.impl.UsersDaoImpl;
 import com.example.demoJavaWebAll11.service.UsersService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersServiceImpl implements UsersService {
 
     private UsersDao usersDao = new UsersDaoImpl();
+    private RoleDao roleDao = new RoleDaoImpl();
 
     /**
      * 登录方法
@@ -20,7 +25,36 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public Users login(String username, String password) {
-        return usersDao.login(username, password);
+        // 用户包含角色，角色包含菜单，菜单分一二级
+        Users users = usersDao.login(username, password);
+        if (users == null) {
+            return users;
+        }
+        // 根据角色id查询角色，菜单信息（三表联查），users.roleid ==> middleid ==> menuids
+        Integer roleId = users.getRoleId();
+        Role role = roleDao.findbyid(roleId);
+
+        // 对获取的role对象的菜单进行一二级分级
+        List<Menu> menuList = role.getMenuList();
+        List<Menu> gradedMenuList = new ArrayList<>();
+
+        for (Menu menu : menuList) {
+            if (menu.getUpmenuId() == 0) {
+                List<Menu> secondMenuList = new ArrayList<>();
+                // 一级菜单，继续匹配二级菜单
+                for (Menu secondMenu : menuList) {
+                    if (secondMenu.getUpmenuId() == menu.getMenuId()) {
+                        secondMenuList.add(secondMenu);
+                    }
+                }
+                menu.setSecondMenuList(secondMenuList);
+                gradedMenuList.add(menu);
+            }
+        }
+        role.setMenuList(gradedMenuList);
+        users.setRole(role);
+
+        return users;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.example.demoJavaWebAll11.dao.impl;
 
+import com.example.demoJavaWebAll11.bean.Menu;
 import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.dao.DBUtils;
 import com.example.demoJavaWebAll11.dao.RoleDao;
@@ -93,5 +94,46 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
             closeAll();
         }
         return key;
+    }
+
+    /**
+     * @param roleid
+     * @return 根据传入的roleid，查询得到封装Role信息的对象
+     */
+    @Override
+    public Role findbyid(int roleid) {
+        Role role = new Role();
+        List menuList = new ArrayList();
+        try {
+            //SELECT * FROM role r, menu m, middle mid WHERE r.roleid=mid.roleid AND mid.menuid=m.menuid AND r.roleid=1;
+            String sql = "SELECT * FROM role r, menu m, middle mid WHERE r.roleid=mid.roleid AND mid.menuid=m.menuid AND r.roleid=?";
+            List params = new ArrayList();
+            params.add(roleid);
+
+            resultSet = query(sql, params);
+            while (resultSet.next()) {
+                role.setRoleId(resultSet.getInt("roleid"));
+                role.setRoleName(resultSet.getString("rolename"));
+                role.setRoleState(resultSet.getInt("rolestate"));
+
+                Menu menu = new Menu();
+                menu.setMenuId(resultSet.getInt("menuid"));
+                menu.setMenuName(resultSet.getString("menuname"));
+                menu.setUrl(resultSet.getString("url"));
+                menu.setState(resultSet.getInt("state"));
+
+                menuList.add(menu);
+            }
+
+            role.setMenuList(menuList);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        // 用户包含角色，角色包含菜单
+
+        return null;
     }
 }
