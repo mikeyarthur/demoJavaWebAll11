@@ -1,14 +1,17 @@
 package com.example.demoJavaWebAll11.service.impl;
 
 import com.example.demoJavaWebAll11.bean.Role;
+import com.example.demoJavaWebAll11.dao.MiddleDao;
 import com.example.demoJavaWebAll11.dao.RoleDao;
+import com.example.demoJavaWebAll11.dao.impl.MiddleDaoImpl;
 import com.example.demoJavaWebAll11.dao.impl.RoleDaoImpl;
 import com.example.demoJavaWebAll11.service.RoleService;
 
 import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
-    RoleDao roleDao = new RoleDaoImpl();
+    private RoleDao roleDao = new RoleDaoImpl();
+    private MiddleDao middleDao = new MiddleDaoImpl();
 
     /**
      * 获取所有角色
@@ -33,6 +36,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     /**
+     * 目前没有考虑数据库操作的事务问题，这里有2个数据库操作（1 update role表， 2 update middle表），如果一个成功另一个失败，需要回退处理
      * @param rolename 角色名称
      * @param state    角色状态
      * @param menuids
@@ -40,22 +44,25 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public int addRole(String rolename, String state, String[] menuids) {
-        // 1. 新增角色表
-        Role role = new Role();
-        role.setRoleName(rolename);
-        role.setRoleState(Integer.parseInt(state));
-        int add = roleDao.addRole(role);
-        if (add > 0) {
-            // 新增成功
-        } else {
-            // 新增失败
+        int ok = 0;
+        try {
+            // 1. 新增角色表
+            Role role = new Role();
+            role.setRoleName(rolename);
+            role.setRoleState(Integer.parseInt(state));
+            // 返回值是 addRole 数据库update后的id，不抛出异常，而且key > 0 为新增成功，
+            int key = roleDao.addRole(role);
+
+            // 2. 新增中间表
+            // 2.1. 如何获得新增数据的id
+            int insertMiddle = middleDao.insertMiddle(key, menuids);
+
+            ok = 1;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } finally {
         }
 
-        // TODO: 先测试角色新增功能
-        return add;
-        // 2. 新增中间表
-        // 2.1. 如何获得新增数据的id
-
-//        return roleDao.addRole(rolename, state, menuids);
+        return ok;
     }
 }

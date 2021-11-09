@@ -68,10 +68,10 @@ public class RoleServlet extends HttpServlet {
 
         // 2. 调用service方法
         List<Menu> menuList = menuService.getMenuList();
-        System.out.println("menuList = " + menuList);
-        for (Menu menu : menuList) {
-            System.out.println("menu = " + menu);
-        }
+//        System.out.println("menuList = " + menuList);
+//        for (Menu menu : menuList) {
+//            System.out.println("menu = " + menu);
+//        }
         req.setAttribute("mlist", menuList);
 
         // 3. 存值和跳转页面
@@ -98,9 +98,9 @@ public class RoleServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter writer = resp.getWriter();
         if (update > 0) {
-            writer.println("<script>alert('新增成功');location.href='/power/user/users?operation=select';</script>");
+            writer.println("<script>alert('新增成功');location.href='roles?operation=select';</script>");
         } else {
-            writer.println("<script>alert('新增失败');location.href='/power/user/users?operation=getRoleList&nextOperation=addUser';</script>");
+            writer.println("<script>alert('新增失败');location.href='roles?operation=selectmenus&nextOperation=addRole';</script>");
         }
     }
 }
