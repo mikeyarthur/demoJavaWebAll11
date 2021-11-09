@@ -18,4 +18,13 @@ public interface RoleService {
      * @return  所有角色的条数
      */
     public int total();
+
+    /**
+     *
+     * @param rolename  角色名称
+     * @param state     角色状态
+     * @param menuids
+     * @return          影响数据库的行数
+     */
+    public int addRole(String rolename, String state, String[] menuids);
 }

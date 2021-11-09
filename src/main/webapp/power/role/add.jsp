@@ -30,12 +30,12 @@
         </div>
 </div>
 <div class="cztable">
-	<form action="list.jsp" method="post">
+	<form action="roles?operation=addRole" method="post">
 <table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="120px">角色名：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="管理员" />
+						<input type="text"  name="rolename" value="管理员" />
 					</td>
                 </tr>
 
@@ -51,12 +51,12 @@
 <%--                                </ul>--%>
 <%--                            </li>--%>
                             <c:forEach items="${mlist}" var="m" varStatus="sta">
-                            <li><input type="checkbox" name="${m.menuId}">${m.menuName}</li>
+                            <li><input type="checkbox" name="namemenu" value="${m.menuId}">${m.menuName}</li>
                             <ul>
                                 <c:forEach items="${m.secondMenuList}" var="s" varStatus="secondSta">
-<%--                                    这里，必须用转义空格打出来才有分级效果--%>
+<%--                                    这里，必须用转义空格&nbsp;打出来才有分级效果--%>
 <%--                                    在td标签里面，单纯用ul li ul li没有分级效果的--%>
-                                <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="${s.menuId}"/>${s.menuName}</li>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="namemenu" value="${s.menuId}"/>${s.menuName}</li>
                                 </c:forEach>
                             </ul>
                             </c:forEach>
@@ -67,7 +67,8 @@
                 <tr>
                     <td>启用状态<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="state" checked value="1" />启用 <input type="radio" name="state" value="0"/>禁用
+                        <input type="radio" name="state" checked value="1" />启用
+                        <input type="radio" name="state" value="0"/>禁用
                     </td>
                 </tr>
 				

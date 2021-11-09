@@ -65,4 +65,26 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
 
         return total;
     }
+
+    /**
+     *
+     * @param role  包含新增角色信息的对象
+     * @return      影响数据库的条数
+     */
+    public int addRole(Role role) {
+        int update = 0;
+        try {
+            List params = new ArrayList();
+            String sql = "insert into role values (null, ?, ?)";
+            params.add(role.getRoleName());
+            params.add(role.getRoleState());
+
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return update;
+    }
 }

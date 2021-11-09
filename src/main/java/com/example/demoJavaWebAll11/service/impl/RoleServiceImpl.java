@@ -31,4 +31,31 @@ public class RoleServiceImpl implements RoleService {
     public int total() {
         return roleDao.total();
     }
+
+    /**
+     * @param rolename 角色名称
+     * @param state    角色状态
+     * @param menuids
+     * @return 影响数据库的行数
+     */
+    @Override
+    public int addRole(String rolename, String state, String[] menuids) {
+        // 1. 新增角色表
+        Role role = new Role();
+        role.setRoleName(rolename);
+        role.setRoleState(Integer.parseInt(state));
+        int add = roleDao.addRole(role);
+        if (add > 0) {
+            // 新增成功
+        } else {
+            // 新增失败
+        }
+
+        // TODO: 先测试角色新增功能
+        return add;
+        // 2. 新增中间表
+        // 2.1. 如何获得新增数据的id
+
+//        return roleDao.addRole(rolename, state, menuids);
+    }
 }

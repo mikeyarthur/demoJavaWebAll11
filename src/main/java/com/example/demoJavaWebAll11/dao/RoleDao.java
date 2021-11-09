@@ -18,4 +18,11 @@ public interface RoleDao {
      * @return  所有角色的条数
      */
     public int total();
+
+    /**
+     *
+     * @param role  包含新增角色信息的对象
+     * @return      影响数据库的条数
+     */
+    public int addRole(Role role);
 }
