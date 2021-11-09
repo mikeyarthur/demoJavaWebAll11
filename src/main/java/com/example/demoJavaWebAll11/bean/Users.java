@@ -15,6 +15,24 @@ public class Users {
 
     private Role role;
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "userId=" + userId +
+                ", loginName='" + loginName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", realName='" + realName + '\'' +
+                ", sex=" + sex +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", desc='" + desc + '\'' +
+                ", roleId=" + roleId +
+                ", role=" + role +
+                '}';
+    }
+
     public Integer getUserId() {
         return userId;
     }

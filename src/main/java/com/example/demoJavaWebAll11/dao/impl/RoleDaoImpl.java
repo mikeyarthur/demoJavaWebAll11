@@ -121,6 +121,7 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
                 menu.setMenuName(resultSet.getString("menuname"));
                 menu.setUrl(resultSet.getString("url"));
                 menu.setState(resultSet.getInt("state"));
+                menu.setUpmenuId(resultSet.getInt("upmenuid"));
 
                 menuList.add(menu);
             }
@@ -134,6 +135,6 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
 
         // 用户包含角色，角色包含菜单
 
-        return null;
+        return role;
     }
 }

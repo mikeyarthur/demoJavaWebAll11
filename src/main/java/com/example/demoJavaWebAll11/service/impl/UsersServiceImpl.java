@@ -27,11 +27,14 @@ public class UsersServiceImpl implements UsersService {
     public Users login(String username, String password) {
         // 用户包含角色，角色包含菜单，菜单分一二级
         Users users = usersDao.login(username, password);
+//        System.out.println("users = " + users);
         if (users == null) {
+//            System.out.println("users = " + users);
             return users;
         }
         // 根据角色id查询角色，菜单信息（三表联查），users.roleid ==> middleid ==> menuids
-        Integer roleId = users.getRoleId();
+        int roleId = users.getRoleId();
+//        System.out.println("roleId = " + roleId);
         Role role = roleDao.findbyid(roleId);
 
         // 对获取的role对象的菜单进行一二级分级
