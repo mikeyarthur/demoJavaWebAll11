@@ -4,6 +4,7 @@ import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.dao.DBUtils;
 import com.example.demoJavaWebAll11.dao.RoleDao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,19 +73,25 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
      * @return      影响数据库的条数
      */
     public int addRole(Role role) {
-        int update = 0;
+        int key = 0;
         try {
             List params = new ArrayList();
             String sql = "insert into role values (null, ?, ?)";
             params.add(role.getRoleName());
             params.add(role.getRoleState());
 
-            update = update(sql, params);
+            // update保存的是受影响的数据库条数，update失败会抛出异常，所以不用判断return，可以直接下一步获取新增后的id值
+            int update = update(sql, params);
+            // pps获取ResultSet，ResultSet中只有一个值，就是新增后的id值
+            ResultSet generatedKeys = pps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                key = generatedKeys.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             closeAll();
         }
-        return update;
+        return key;
     }
 }
