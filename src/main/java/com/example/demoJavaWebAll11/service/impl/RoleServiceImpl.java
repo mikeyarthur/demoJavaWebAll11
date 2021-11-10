@@ -1,5 +1,6 @@
 package com.example.demoJavaWebAll11.service.impl;
 
+import com.example.demoJavaWebAll11.bean.Menu;
 import com.example.demoJavaWebAll11.bean.Role;
 import com.example.demoJavaWebAll11.dao.MiddleDao;
 import com.example.demoJavaWebAll11.dao.RoleDao;
@@ -7,6 +8,7 @@ import com.example.demoJavaWebAll11.dao.impl.MiddleDaoImpl;
 import com.example.demoJavaWebAll11.dao.impl.RoleDaoImpl;
 import com.example.demoJavaWebAll11.service.RoleService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
@@ -64,5 +66,35 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return ok;
+    }
+
+    /**
+     * @param roleid
+     * @return 根据传入的roleid，查询得到封装Role信息的对象
+     */
+    @Override
+    public Role findbyid(int roleid) {
+        Role role = roleDao.findbyid(roleid);
+
+        // 对获取的role对象的菜单进行一二级分级
+        List<Menu> menuList = role.getMenuList();
+        List<Menu> gradedMenuList = new ArrayList<>();
+
+        for (Menu menu : menuList) {
+            if (menu.getUpmenuId() == 0) {
+                List<Menu> secondMenuList = new ArrayList<>();
+                // 一级菜单，继续匹配二级菜单
+                for (Menu secondMenu : menuList) {
+                    if (secondMenu.getUpmenuId() == menu.getMenuId()) {
+                        secondMenuList.add(secondMenu);
+                    }
+                }
+                menu.setSecondMenuList(secondMenuList);
+                gradedMenuList.add(menu);
+            }
+        }
+        role.setMenuList(gradedMenuList);
+
+        return role;
     }
 }

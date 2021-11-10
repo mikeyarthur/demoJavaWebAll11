@@ -34,6 +34,9 @@ public class RoleServlet extends HttpServlet {
         else if ("addRole".equals(operation)) {
             addRole(req, resp);
         }
+        else if ("editRole".equals(operation)) {
+            editRole(req, resp);
+        }
         else {
             select(req, resp);
         }
@@ -102,5 +105,37 @@ public class RoleServlet extends HttpServlet {
         } else {
             writer.println("<script>alert('新增失败');location.href='roles?operation=selectmenus&nextOperation=addRole';</script>");
         }
+    }
+
+    protected void editRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 获取jsp参数和req参数，确定roleid
+        String pageIndex = req.getParameter("index");
+        String listIndex = req.getParameter("listIndex");
+
+
+        // 2. 处理数据
+        // 2.1. 主键查询：角色信息，包含的菜单的id（middle）--多表查询
+        PageUtil pageUtil = new PageUtil();
+        List<Role> usersList = roleService.getRoleList(Integer.parseInt(pageIndex), pageUtil.getPageSize());
+        Role roleToFind = usersList.get(Integer.parseInt(listIndex) - 1);
+
+        // 2.2. 同时查询全部的菜单列表-修改页面要默认选中当前角色的菜单列表
+        Role roleToEdit = roleService.findbyid(roleToFind.getRoleId());
+        req.setAttribute("rolename", roleToEdit.getRoleName());
+//        System.out.println("roleToEdit.getRoleName() = " + roleToEdit.getRoleName());
+        req.setAttribute("rolestate", roleToEdit.getRoleState());
+//        System.out.println("roleToEdit.getRoleState() = " + roleToEdit.getRoleState());
+        req.setAttribute("rolemenulist", roleToEdit.getMenuList());
+//        System.out.println("roleToEdit.getMenuList() = " + roleToEdit.getMenuList());
+        List<Menu> allMenuList = menuService.getMenuList();
+        req.setAttribute("allmenulist", allMenuList);
+//        System.out.println("allmenulist = " + allMenuList);
+
+        // 3. 跳转edit.jsp
+//        resp.setContentType("text/html;charset=utf-8");
+//        PrintWriter writer = resp.getWriter();
+//        writer.println("<script>alert('进入edit.jsp');location.href='edit.jsp';</script>");
+
+        req.getRequestDispatcher("edit.jsp").forward(req, resp);
     }
 }

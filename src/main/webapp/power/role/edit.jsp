@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -20,7 +21,7 @@
 
 		<div class="div_head">
             <span>
-                <span style="float:left">当前位置是：教务中心-》考试-》新增</span>
+                <span style="float:left">当前位置是：教务中心-》考试-》更改</span>
                 <span style="float:right;margin-right: 8px;font-weight: bold">
                     <a style="text-decoration: none" href="javascript:history.back();">【返回】</a>
                 </span>
@@ -33,31 +34,46 @@
                 <tr  width="120px;">
                     <td width="120px">角色名：<span style="color:red">*</span>：</td>
                     <td>
-						<input type="text"  name="f_goods_image" value="管理员" />
+<%--						<input type="text"  name="f_goods_image" value="管理员" />--%>
+						<input type="text"  name="rolename" value="${rolename}" />
 					</td>
                 </tr>
 
                 <tr  width="120px;">
                     <td>菜单资源<span style="color:red">*</span>：</td>
                     <td>
-						<ul>
-                        	<li><input type="checkbox" name="menu"  />权限管理
-                            	<ul>
-                                	<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />人员管理</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />角色管理</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />菜单管理</li>
+<%--						<ul>--%>
+<%--                        	<li><input type="checkbox" name="menu"  />权限管理--%>
+<%--                            	<ul>--%>
+<%--                                	<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />人员管理</li>--%>
+<%--                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />角色管理</li>--%>
+<%--                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />菜单管理</li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            <li><input type="checkbox" name="menu"  />个人中心</li>--%>
+<%--                            <li><input type="checkbox" name="menu"  />教务中心</li>--%>
+<%--                        </ul>--%>
+                        <c:forEach items="${allmenulist}" var="m1" varStatus="sta1">
+                        <ul>
+                            <li><input type="checkbox" name="menu" />
+                                    ${m1.upmenuId == 0 ? m1.menuName : ''}
+                                <c:forEach items="${m1.secondMenuList}" var="m2" varStatus="sta2">
+                                <ul>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />${m2.menuName}</li>
                                 </ul>
+                                </c:forEach>
                             </li>
-                            <li><input type="checkbox" name="menu"  />个人中心</li>
-                            <li><input type="checkbox" name="menu"  />教务中心</li>
                         </ul>
+                        </c:forEach>
 					</td>
                 </tr>
                 
                 <tr>
                     <td>启用状态<span style="color:red">*</span>：</td>
                     <td>
-                        <input type="radio" name="state" checked value="1" />启用 <input type="radio" name="state" value="0"/>禁用
+<%--                        <input type="radio" name="state" checked value="1" />启用 <input type="radio" name="state" value="0"/>禁用--%>
+                        <input type="radio" name="state" value="1" ${rolestate == 1 ? 'checked' : ''} />启用
+                        <input type="radio" name="state" value="0" ${rolestate == 0 ? 'checked' : ''} />禁用
                     </td>
                 </tr>
 				
