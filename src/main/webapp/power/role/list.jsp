@@ -81,8 +81,9 @@
                     	<a href="javascript:alert('操作成功！');">启用</a>
                         <a href="info.jsp">详情</a>
 <%--                        <a href="edit.jsp">修改</a>--%>
-                        <a href="roles?operation=editRole&index=${pi.pageIndex}&listIndex=${sta.count}">修改</a>
-						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>
+                        <a href="roles?operation=queryBeforeEditRole&index=${pi.pageIndex}&listIndex=${sta.count}">修改</a>
+<%--						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>--%>
+						<a href="roles?operation=delete&index=${pi.pageIndex}&listIndex=${sta.count}" onclick="del();return true;" class="tablelink"> 删除</a>
                     </td>
                 </tr>
                 </c:forEach>

@@ -137,4 +137,25 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
 
         return role;
     }
+
+    /**
+     * @param roleid
+     * @return 根据传入的roleid，删除role表影响数据库的条数
+     */
+    @Override
+    public int delete(int roleid) {
+        int update = 0;
+        try {
+            String sql = "DELETE FROM role WHERE roleid=?";
+            List params = new ArrayList();
+            params.add(roleid);
+
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return update;
+    }
 }

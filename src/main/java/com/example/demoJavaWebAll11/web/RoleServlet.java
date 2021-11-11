@@ -34,8 +34,14 @@ public class RoleServlet extends HttpServlet {
         else if ("addRole".equals(operation)) {
             addRole(req, resp);
         }
+        else if ("queryBeforeEditRole".equals(operation)) {
+            queryBeforeEditRole(req, resp);
+        }
         else if ("editRole".equals(operation)) {
             editRole(req, resp);
+        }
+        else if ("delete".equals(operation)) {
+            delete(req, resp);
         }
         else {
             select(req, resp);
@@ -89,14 +95,7 @@ public class RoleServlet extends HttpServlet {
     }
 
     protected void addRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 接收参数
-        String rolename = req.getParameter("rolename");
-        String state = req.getParameter("state");
-        // 这里得到是一个列表，而不是一个单一的值
-        String[] menuids = req.getParameterValues("namemenu");
-
-        // 2. 调取service
-        int update = roleService.addRole(rolename, state, menuids);
+        int update = getUpdate(req);
         // 3. 存值跳转页面
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter writer = resp.getWriter();
@@ -107,26 +106,37 @@ public class RoleServlet extends HttpServlet {
         }
     }
 
-    protected void editRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 获取jsp参数和req参数，确定roleid
-        String pageIndex = req.getParameter("index");
-        String listIndex = req.getParameter("listIndex");
+    private int getUpdate(HttpServletRequest req) {
+        // 1. 接收参数
+        String rolename = req.getParameter("rolename");
+        System.out.println("rolename = " + rolename);
+        String state = req.getParameter("state");
+        System.out.println("state = " + state);
+        // 这里得到是一个列表，而不是一个单一的值
+        String[] menuids = req.getParameterValues("namemenu");
+        System.out.println("menuids = " + menuids);
+        for (String menuid : menuids) {
+            System.out.println("menuid = " + menuid);
+        }
 
+        // 2. 调取service
+        return roleService.addRole(rolename, state, menuids);
+    }
 
-        // 2. 处理数据
-        // 2.1. 主键查询：角色信息，包含的菜单的id（middle）--多表查询
-        PageUtil pageUtil = new PageUtil();
-        List<Role> usersList = roleService.getRoleList(Integer.parseInt(pageIndex), pageUtil.getPageSize());
-        Role roleToFind = usersList.get(Integer.parseInt(listIndex) - 1);
+    protected void queryBeforeEditRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Role roleToFind = getRole(req);
 
         // 2.2. 同时查询全部的菜单列表-修改页面要默认选中当前角色的菜单列表
         Role roleToEdit = roleService.findbyid(roleToFind.getRoleId());
-        req.setAttribute("rolename", roleToEdit.getRoleName());
-//        System.out.println("roleToEdit.getRoleName() = " + roleToEdit.getRoleName());
-        req.setAttribute("rolestate", roleToEdit.getRoleState());
-//        System.out.println("roleToEdit.getRoleState() = " + roleToEdit.getRoleState());
-        req.setAttribute("rolemenulist", roleToEdit.getMenuList());
-//        System.out.println("roleToEdit.getMenuList() = " + roleToEdit.getMenuList());
+//        req.setAttribute("rolename", roleToEdit.getRoleName());
+////        System.out.println("roleToEdit.getRoleName() = " + roleToEdit.getRoleName());
+//        req.setAttribute("rolestate", roleToEdit.getRoleState());
+////        System.out.println("roleToEdit.getRoleState() = " + roleToEdit.getRoleState());
+//        req.setAttribute("rolemenulist", roleToEdit.getMenuList());
+////        System.out.println("roleToEdit.getMenuList() = " + roleToEdit.getMenuList());
+        // 直接存role对象，后续在edit提交的时候删除
+        req.setAttribute("role", roleToEdit);
+
         List<Menu> allMenuList = menuService.getMenuList();
         req.setAttribute("allmenulist", allMenuList);
 //        System.out.println("allmenulist = " + allMenuList);
@@ -137,5 +147,69 @@ public class RoleServlet extends HttpServlet {
 //        writer.println("<script>alert('进入edit.jsp');location.href='edit.jsp';</script>");
 
         req.getRequestDispatcher("edit.jsp").forward(req, resp);
+    }
+
+    private Role getRole(HttpServletRequest req) {
+        // 1. 获取jsp参数和req参数，确定roleid
+        String pageIndex = req.getParameter("index");
+//        System.out.println("pageIndex = " + pageIndex);
+        String listIndex = req.getParameter("listIndex");
+//        System.out.println("listIndex = " + listIndex);
+
+
+        // 2. 处理数据
+        // 2.1. 主键查询：角色信息，包含的菜单的id（middle）--多表查询
+        PageUtil pageUtil = new PageUtil();
+        List<Role> usersList = roleService.getRoleList(Integer.parseInt(pageIndex), pageUtil.getPageSize());
+        Role roleToFind = usersList.get(Integer.parseInt(listIndex) - 1);
+        return roleToFind;
+    }
+
+    protected void editRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 缓存旧的role，后面删除用的
+        String roleid = req.getParameter("roleid");
+        System.out.println("roleid = " + roleid);
+        // 2. 先新增新的，后删除旧的，第一步失败了直接返回页面，不影响原来的数据库
+        int update = getUpdate(req);
+
+        // 3. 存值跳转页面
+        resp.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = resp.getWriter();
+        if (update > 0) {
+            // 新增新的role成功
+            int delete = roleService.delete(Integer.parseInt(roleid));
+            if (delete > 0) {
+                // 删除旧的role成功，跳转到select页面
+                writer.println("<script>alert('更新成功');location.href='roles?opertaion=select'</script>");
+            } else {
+                System.out.println("RoleServlet.editRole error");
+                writer.println("<script>alert('更新失败，数据出错，但我不知道怎么搞了，删库跑路了');console.log('更新失败，数据出错，但我不知道怎么搞了，删库跑路了')</script>");
+            }
+        } else {
+            // 失败，重返 edit.jsp
+            // queryBeforeEditRole(req, resp);  // 错误操作，获取参数都是null，后续的参数处理会抛异常的，需要回到页面提req
+            // 正确操作是：失败后应该要返回到列表
+            writer.println("<script>alert('更新失败');location.href='roles?opertaion=select'</script>");
+            return;
+        }
+    }
+
+    protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Role roleToDelete = getRole(req);
+
+        // 2. 调取service
+        // 2.1. 先删除middle表
+        // 2.2. 再删除role表
+        // 琐碎的工作，在service层做，不在应用层做
+        int delete = roleService.delete(roleToDelete.getRoleId());
+
+        // 3. 存值跳转页面
+        resp.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = resp.getWriter();
+        if (delete > 0) {
+            writer.println("<script>alert('更新成功');location.href='roles?opertaion=select'</script>");
+        } else {
+            writer.println("<script>alert('更新失败');location.href='roles?opertaion=select'</script>");
+        }
     }
 }

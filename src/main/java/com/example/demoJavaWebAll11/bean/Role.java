@@ -10,6 +10,17 @@ public class Role {
     private List<Users> usersList;
     private List<Menu> menuList;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", roleState=" + roleState +
+                ", usersList=" + usersList +
+                ", menuList=" + menuList +
+                '}';
+    }
+
     public Integer getRoleId() {
         return roleId;
     }

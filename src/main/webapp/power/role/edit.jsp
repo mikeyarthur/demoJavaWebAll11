@@ -29,13 +29,13 @@
         </div>
 </div>
 <div class="cztable">
-	<form action="list.jsp" method="post">
+	<form action="roles?operation=editRole&roleid=${role.roleId}" method="post">
 <table border="1" width="100%" class="table_a">
                 <tr  width="120px;">
                     <td width="120px">角色名：<span style="color:red">*</span>：</td>
                     <td>
 <%--						<input type="text"  name="f_goods_image" value="管理员" />--%>
-						<input type="text"  name="rolename" value="${rolename}" />
+						<input type="text"  name="rolename" value="${role.roleName}" />
 					</td>
                 </tr>
 
@@ -55,11 +55,11 @@
 <%--                        </ul>--%>
                         <c:forEach items="${allmenulist}" var="m1" varStatus="sta1">
                         <ul>
-                            <li><input type="checkbox" name="menu" />
+                            <li><input type="checkbox" name="namemenu" value="${m1.menuId}"/>
                                     ${m1.upmenuId == 0 ? m1.menuName : ''}
                                 <c:forEach items="${m1.secondMenuList}" var="m2" varStatus="sta2">
                                 <ul>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />${m2.menuName}</li>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="namemenu" value="${m2.menuId}" />${m2.menuName}</li>
                                 </ul>
                                 </c:forEach>
                             </li>
@@ -72,8 +72,8 @@
                     <td>启用状态<span style="color:red">*</span>：</td>
                     <td>
 <%--                        <input type="radio" name="state" checked value="1" />启用 <input type="radio" name="state" value="0"/>禁用--%>
-                        <input type="radio" name="state" value="1" ${rolestate == 1 ? 'checked' : ''} />启用
-                        <input type="radio" name="state" value="0" ${rolestate == 0 ? 'checked' : ''} />禁用
+                        <input type="radio" name="state" value="1" ${role.roleState == 1 ? 'checked' : ''} />启用
+                        <input type="radio" name="state" value="0" ${role.roleState == 0 ? 'checked' : ''} />禁用
                     </td>
                 </tr>
 				

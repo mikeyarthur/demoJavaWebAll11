@@ -32,4 +32,11 @@ public interface RoleDao {
      * @return      根据传入的roleid，查询得到封装Role信息的对象
      */
     public Role findbyid(int roleid);
+
+    /**
+     *
+     * @param roleid
+     * @return      根据传入的roleid，删除role表影响数据库的条数
+     */
+    public int delete(int roleid);
 }

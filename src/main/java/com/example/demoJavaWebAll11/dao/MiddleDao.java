@@ -8,4 +8,11 @@ public interface MiddleDao {
      * @return        数据库update影响的条数
      */
     public int insertMiddle(int roleid, String[] ids);
+
+    /**
+     *
+     * @param roleid
+     * @return       根据传入的roleid，删除middle表中roleid对应的记录条数
+     */
+    public int delete(int roleid);
 }

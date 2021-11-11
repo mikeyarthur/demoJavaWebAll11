@@ -97,4 +97,21 @@ public class RoleServiceImpl implements RoleService {
 
         return role;
     }
+
+    /**
+     * @param roleid
+     * @return 根据传入的roleid，删除role表影响数据库的条数
+     */
+    @Override
+    public int delete(int roleid) {
+        int delRole = 0;
+        int delMiddle = middleDao.delete(roleid);
+        if (delMiddle > 0) {
+            // 删除middle表成功之后，才删除role表
+            delRole = roleDao.delete(roleid);
+        } else {
+            System.out.println("delMiddle = " + delMiddle);
+        }
+        return delRole;
+    }
 }

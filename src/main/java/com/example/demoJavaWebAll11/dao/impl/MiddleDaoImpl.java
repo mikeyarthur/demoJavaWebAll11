@@ -4,6 +4,8 @@ import com.example.demoJavaWebAll11.dao.DBUtils;
 import com.example.demoJavaWebAll11.dao.MiddleDao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MiddleDaoImpl extends DBUtils implements MiddleDao {
     /**
@@ -34,5 +36,26 @@ public class MiddleDaoImpl extends DBUtils implements MiddleDao {
         }
 
         return ok;
+    }
+
+    /**
+     * @param roleid
+     * @return 根据传入的roleid，删除middle表中roleid对应的记录条数
+     */
+    @Override
+    public int delete(int roleid) {
+        int update = 0;
+        try {
+            String sql = "DELETE FROM middle WHERE roleid=?";
+            List params = new ArrayList();
+            params.add(roleid);
+
+            update = update(sql, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return update;
     }
 }
