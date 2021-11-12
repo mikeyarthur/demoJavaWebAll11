@@ -109,21 +109,22 @@ public class RoleServlet extends HttpServlet {
     private int getUpdate(HttpServletRequest req) {
         // 1. 接收参数
         String rolename = req.getParameter("rolename");
-        System.out.println("rolename = " + rolename);
+//        System.out.println("rolename = " + rolename);
         String state = req.getParameter("state");
-        System.out.println("state = " + state);
+//        System.out.println("state = " + state);
         // 这里得到是一个列表，而不是一个单一的值
         String[] menuids = req.getParameterValues("namemenu");
-        System.out.println("menuids = " + menuids);
-        for (String menuid : menuids) {
-            System.out.println("menuid = " + menuid);
-        }
+//        System.out.println("menuids = " + menuids);
+//        for (String menuid : menuids) {
+//            System.out.println("menuid = " + menuid);
+//        }
 
         // 2. 调取service
         return roleService.addRole(rolename, state, menuids);
     }
 
     protected void queryBeforeEditRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nextOperation = req.getParameter("nextOperation");
         Role roleToFind = getRole(req);
 
         // 2.2. 同时查询全部的菜单列表-修改页面要默认选中当前角色的菜单列表
@@ -173,11 +174,17 @@ public class RoleServlet extends HttpServlet {
 //        System.out.println("allmenulist = " + allMenuList);
 
         // 3. 跳转edit.jsp
-//        resp.setContentType("text/html;charset=utf-8");
-//        PrintWriter writer = resp.getWriter();
+        resp.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = resp.getWriter();
 //        writer.println("<script>alert('进入edit.jsp');location.href='edit.jsp';</script>");
 
-        req.getRequestDispatcher("edit.jsp").forward(req, resp);
+        if ("editRole".equals(nextOperation)) {
+            req.getRequestDispatcher("edit.jsp").forward(req, resp);
+        } else if ("infoRole".equals(nextOperation)) {
+            req.getRequestDispatcher("info.jsp").forward(req, resp);
+        } else {
+            writer.println("<script>alert('Not perform as expected, please re-check!');</script>");
+        }
     }
 
     private Role getRole(HttpServletRequest req) {
@@ -199,7 +206,7 @@ public class RoleServlet extends HttpServlet {
     protected void editRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 缓存旧的role，后面删除用的
         String roleid = req.getParameter("roleid");
-        System.out.println("roleid = " + roleid);
+//        System.out.println("roleid = " + roleid);
         // 2. 先新增新的，后删除旧的，第一步失败了直接返回页面，不影响原来的数据库
         int update = getUpdate(req);
 
