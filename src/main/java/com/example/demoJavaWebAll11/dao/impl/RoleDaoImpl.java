@@ -158,4 +158,30 @@ public class RoleDaoImpl extends DBUtils implements RoleDao {
         }
         return update;
     }
+
+    /**
+     * @param roleid 要修改对象的roleid
+     * @param attr   要修改的属性值（数据库对应的列名）
+     * @param value  要修改的值
+     * @return 数据库更新影响的条数
+     */
+    @Override
+    public int set(int roleid, String attr, String value) {
+        int update = 0;
+        try {
+            //UPDATE role SET rolestate=1 WHERE roleid=39;
+            StringBuffer sql = new StringBuffer("UPDATE role SET ");
+            sql.append(attr);
+            sql.append("=" + value);
+            sql.append(" WHERE roleid=" + roleid);
+
+            update = update(sql.toString(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeAll();
+        }
+
+        return update;
+    }
 }

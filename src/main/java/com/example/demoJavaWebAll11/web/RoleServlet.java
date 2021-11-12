@@ -182,6 +182,8 @@ public class RoleServlet extends HttpServlet {
             req.getRequestDispatcher("edit.jsp").forward(req, resp);
         } else if ("infoRole".equals(nextOperation)) {
             req.getRequestDispatcher("info.jsp").forward(req, resp);
+        } else if ("enableDisableRole".equals(nextOperation)) {
+            enableDisableRole(req, resp);
         } else {
             writer.println("<script>alert('Not perform as expected, please re-check!');</script>");
         }
@@ -248,6 +250,24 @@ public class RoleServlet extends HttpServlet {
             writer.println("<script>alert('更新成功');location.href='roles?opertaion=select'</script>");
         } else {
             writer.println("<script>alert('更新失败');location.href='roles?opertaion=select'</script>");
+        }
+    }
+
+    protected void enableDisableRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 1. 获取属性
+        String editRoleState = req.getParameter("editRoleState");
+        Role role = (Role) req.getAttribute("role");
+
+        // 2. service
+        int result = roleService.enableDisable(role.getRoleId(), Integer.parseInt(editRoleState));
+
+        // 3. 存值跳转页面
+        resp.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = resp.getWriter();
+        if (result > 0) {
+            writer.println("<script>alert('操作成功');location.href='roles?opertaion=select'</script>");
+        } else {
+            writer.println("<script>alert('操作失败');location.href='roles?opertaion=select'</script>");
         }
     }
 }

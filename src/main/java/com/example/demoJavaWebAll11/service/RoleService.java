@@ -41,4 +41,12 @@ public interface RoleService {
      * @return      根据传入的roleid，删除role表影响数据库的条数
      */
     public int delete(int roleid);
+
+    /**
+     *
+     * @param roleid  根据roleid修改对应的属性
+     * @param enable  0：disable, 1:enable
+     * @return
+     */
+    public int enableDisable(int roleid, int enable);
 }

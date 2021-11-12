@@ -78,7 +78,8 @@
                     </td>
                     
                     <td>&nbsp;
-                    	<a href="javascript:alert('操作成功！');">启用</a>
+<%--                    	<a href="javascript:alert('操作成功！');">启用</a>--%>
+                    	<a href="roles?operation=queryBeforeEditRole&nextOperation=enableDisableRole&index=${pi.pageIndex}&listIndex=${sta.count}&editRoleState=${r.roleState == 0 ? 1 : 0}">${r.roleState == 0 ? "启用" : "禁用"}</a>
                         <a href="roles?operation=queryBeforeEditRole&nextOperation=infoRole&index=${pi.pageIndex}&listIndex=${sta.count}">详情</a>
 <%--                        <a href="edit.jsp">修改</a>--%>
                         <a href="roles?operation=queryBeforeEditRole&nextOperation=editRole&index=${pi.pageIndex}&listIndex=${sta.count}">修改</a>

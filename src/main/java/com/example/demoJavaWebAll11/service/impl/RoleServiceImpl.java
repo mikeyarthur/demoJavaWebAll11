@@ -114,4 +114,14 @@ public class RoleServiceImpl implements RoleService {
         }
         return delRole;
     }
+
+    /**
+     * @param roleid 根据roleid修改对应的属性
+     * @param enable 0：disable, 1:enable
+     * @return
+     */
+    @Override
+    public int enableDisable(int roleid, int enable) {
+        return roleDao.set(roleid, "rolestate", enable == 1 ? "1" : "0");
+    }
 }

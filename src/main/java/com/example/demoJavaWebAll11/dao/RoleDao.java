@@ -39,4 +39,13 @@ public interface RoleDao {
      * @return      根据传入的roleid，删除role表影响数据库的条数
      */
     public int delete(int roleid);
+
+    /**
+     *
+     * @param roleid    要修改对象的roleid
+     * @param attr      要修改的属性值（数据库对应的列名）
+     * @param value     要修改的值
+     * @return          数据库更新影响的条数
+     */
+    public int set(int roleid, String attr, String value);
 }
