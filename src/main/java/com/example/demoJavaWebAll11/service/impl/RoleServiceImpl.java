@@ -110,7 +110,7 @@ public class RoleServiceImpl implements RoleService {
             // 删除middle表成功之后，才删除role表
             delRole = roleDao.delete(roleid);
         } else {
-            System.out.println("delMiddle = " + delMiddle);
+            System.out.println("failed to delMiddle = " + delMiddle);
         }
         return delRole;
     }

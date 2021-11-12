@@ -9,6 +9,7 @@ public class Menu {
     private Integer state;
     private String desc;
     private String url;
+    private int checkedType;
 
     private List<Role> roleList;
     private List<Menu> secondMenuList;
@@ -22,6 +23,7 @@ public class Menu {
                 ", state=" + state +
                 ", desc='" + desc + '\'' +
                 ", url='" + url + '\'' +
+                ", checkedType=" + checkedType +
                 ", roleList=" + roleList +
                 ", secondMenuList=" + secondMenuList +
                 '}';
@@ -73,6 +75,14 @@ public class Menu {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getCheckedType() {
+        return checkedType;
+    }
+
+    public void setCheckedType(int checkedType) {
+        this.checkedType = checkedType;
     }
 
     public List<Role> getRoleList() {

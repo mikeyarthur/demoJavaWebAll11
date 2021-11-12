@@ -55,11 +55,27 @@
 <%--                        </ul>--%>
                         <c:forEach items="${allmenulist}" var="m1" varStatus="sta1">
                         <ul>
-                            <li><input type="checkbox" name="namemenu" value="${m1.menuId}"/>
+                            <li><input id="idMenuM1${m1.menuId}" type="checkbox" name="namemenu" value="${m1.menuId}" ${m1.checkedType == 1 ? 'checked' : ''} />
                                     ${m1.upmenuId == 0 ? m1.menuName : ''}
                                 <c:forEach items="${m1.secondMenuList}" var="m2" varStatus="sta2">
                                 <ul>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="namemenu" value="${m2.menuId}" />${m2.menuName}</li>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input id="idMenuM2${m2.menuId}" type="checkbox" name="namemenu" value="${m2.menuId}" ${m2.checkedType == 1 ? 'checked' : ''} />${m2.menuName}</li>
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $("input[id='idMenuM2${m2.menuId}']").click(function () {
+                                                // 二级菜单选中一个，其父一级菜单也要选中
+                                                if ($("input[id='idMenuM2${m2.menuId}']").attr('checked') == true) {
+                                                    $("input[id='idMenuM1${m1.menuId}']").attr("checked", true);
+                                                }
+                                            });
+                                            // 一级菜单去勾选，其子二级菜单都去勾选
+                                            $("input[id='idMenuM1${m1.menuId}']").click(function () {
+                                                if ($("input[id='idMenuM1${m1.menuId}']").attr('checked') == false) {
+                                                    $("input[id='idMenuM2${m2.menuId}']").attr("checked", false);
+                                                }
+                                            });
+                                        });
+                                    </script>
                                 </ul>
                                 </c:forEach>
                             </li>

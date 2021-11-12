@@ -137,7 +137,38 @@ public class RoleServlet extends HttpServlet {
         // 直接存role对象，后续在edit提交的时候删除
         req.setAttribute("role", roleToEdit);
 
+        List<Menu> roleMenuList = roleToEdit.getMenuList();
         List<Menu> allMenuList = menuService.getMenuList();
+
+        for (int i = 0; i < roleMenuList.size(); i++) {
+//            System.out.println("roleMenuList.get(" + i + ") = " + roleMenuList.get(i) + "\n\n");
+            for (int j = 0; j < allMenuList.size(); j++) {
+                if (allMenuList.get(j).getMenuId() == roleMenuList.get(i).getMenuId()) {
+                    allMenuList.get(j).setCheckedType(1);
+                    break;
+                }
+            }
+            List<Menu> secondRoleMenuList = roleMenuList.get(i).getSecondMenuList();
+            if (secondRoleMenuList != null) {
+                for (int j = 0; j < secondRoleMenuList.size(); j++) {
+//                    System.out.println("secondMenuList.get(" + j + ")= " + secondRoleMenuList.get(j) + "\n\n");
+                    for (int z = 0; z < allMenuList.size(); z++) {
+                        List<Menu> secondAllMenuList = allMenuList.get(z).getSecondMenuList();
+                        for (int k = 0; k < secondAllMenuList.size(); k++) {
+                            if (secondAllMenuList.get(k).getMenuId() == secondRoleMenuList.get(j).getMenuId()) {
+                                secondAllMenuList.get(k).setCheckedType(1);
+                                allMenuList.get(z).setCheckedType(1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+//        System.out.println("allMenuList = " + allMenuList);
+
         req.setAttribute("allmenulist", allMenuList);
 //        System.out.println("allmenulist = " + allMenuList);
 

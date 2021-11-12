@@ -50,13 +50,29 @@
 <%--                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menu"  />菜单管理</li>--%>
 <%--                                </ul>--%>
 <%--                            </li>--%>
-                            <c:forEach items="${mlist}" var="m" varStatus="sta">
-                            <li><input type="checkbox" name="namemenu" value="${m.menuId}">${m.menuName}</li>
+                            <c:forEach items="${mlist}" var="m1" varStatus="sta1">
+                            <li><input id="idMenuM1${m1.menuId}"  type="checkbox" name="namemenu" value="${m1.menuId}">${m1.menuName}</li>
                             <ul>
-                                <c:forEach items="${m.secondMenuList}" var="s" varStatus="secondSta">
+                                <c:forEach items="${m1.secondMenuList}" var="m2" varStatus="sta2">
 <%--                                    这里，必须用转义空格&nbsp;打出来才有分级效果--%>
 <%--                                    在td标签里面，单纯用ul li ul li没有分级效果的--%>
-                                <li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="namemenu" value="${s.menuId}"/>${s.menuName}</li>
+                                <li>&nbsp;&nbsp;&nbsp;&nbsp;<input id="idMenuM2${m2.menuId}"  type="checkbox" name="namemenu" value="${m2.menuId}"/>${m2.menuName}</li>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $("input[id='idMenuM2${m2.menuId}']").click(function () {
+                                            // 二级菜单选中一个，其父一级菜单也要选中
+                                            if ($("input[id='idMenuM2${m2.menuId}']").attr('checked') == true) {
+                                                $("input[id='idMenuM1${m1.menuId}']").attr("checked", true);
+                                            }
+                                        });
+                                        // 一级菜单去勾选，其子二级菜单都去勾选
+                                        $("input[id='idMenuM1${m1.menuId}']").click(function () {
+                                            if ($("input[id='idMenuM1${m1.menuId}']").attr('checked') == false) {
+                                                $("input[id='idMenuM2${m2.menuId}']").attr("checked", false);
+                                            }
+                                        });
+                                    });
+                                </script>
                                 </c:forEach>
                             </ul>
                             </c:forEach>
